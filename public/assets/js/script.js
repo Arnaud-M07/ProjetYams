@@ -25,8 +25,8 @@
 // // // // // // // // // // // // // // // // // // // //
 // // // 3.Fonctions pour chaque combinaison possible // // 
 // // // // // // // // // // // // // // // // // // // //
-console.log("coucou");
 
+// Création de l'Objet
 let tableauScore = {
     "total1": false,
     "total2": false,
@@ -43,112 +43,165 @@ let tableauScore = {
     "yams": false,
     "chance": false,
 }
-console.log(arrayScore);
+console.log(tableauScore);
 
-function calcPoints(){
-    // Tableau récupérant la valeur de chaque opération
-    const tableauScore = [total1, total2, total3, total4, total5, total6];
-    let sumPoints = 0;
-    // Additionner les élements tu tableau de score
-    for (let point = 0; point<tableauScore.length; point++){
-        sumPoints += tableauScore[point];
+// Exemple de tableau 
+const array = [1, 2, 5, 3, 1, 6, 6, 4, 3, 1, 3, 4, 5, 6, 6, 5, 6, 5, 5, 5, 6];
+
+// Création d'une fonction somme des différents dès pour remplir le tableau des scores avec un switch
+sumOfElements = (array, valueToSum) => {
+    let i = 0;
+    switch (array[i]) {
+        case 1:
+            let total1 = 0;
+            i = 0;
+            for (i; i < array.length; i++) {
+                if (array[i] === valueToSum) {
+                    total1 += valueToSum;
+                }
+            }
+            return total1;
+
+        case 2:
+            let total2 = 0;
+            i = 0;
+            for (i; i < array.length; i++) {
+                if (array[i] === valueToSum) {
+                    total2 += valueToSum;
+                }
+            }
+        return total2;
+
+        case 3:
+            let total3 = 0;
+            i = 0;
+            for (i; i < array.length; i++) {
+                if (array[i] === valueToSum) {
+                    total3 += valueToSum;
+                }
+            }
+        return total3;
+    
+        case 4:
+            let total4 = 0;
+            i = 0;
+            for (i; i < array.length; i++) {
+                if (array[i] === valueToSum) {
+                    total4 += valueToSum;
+                }
+            }
+        return total4;
+    
+        case 5:
+            let total5 = 0;
+            i = 0;
+            for (i; i < array.length; i++) {
+                if (array[i] === valueToSum) {
+                    total5 += valueToSum;
+                }
+            }
+        return total5;
+    
+        case 6:
+            let total6 = 0;
+            i = 0;
+            for (i; i < array.length; i++) {
+                if (array[i] === valueToSum) {
+                    total6 += valueToSum;
+                }
+            }
+        return total6;
+
+    //     case
+    //         let nbr = 0
+    //         array.forEach((arrayValue, i) => {
+    //             if (value == arrayValue){
+    //                     nbr++
+    //                 }
+    //     return nbr
+    //     });
+    // }
     }
-    console.log(sumPoints)
 }
 
-let array = [1, 4, 5, 6, 50]
-// switch du tableau avec une boucle
-    for (let i = 0; i < array.length; i++) {
-        switch (array[i]) {
-            case 1:
-                if (!arrayScore.total1) {
-                    arrayScore.
-                    array
-    arrayScore.total1 = 1;
-                } else {
-                    arrayScore.
-                    arrayScore
-    total1 += 1;
-                }
-                break;
-            
-                case 2:
-                    if (!arrayScore.total2) {
-                        arrayScore.
-                        array
-        arrayScore.total2 = 2;
-                    } else {
-                        arrayScore.
-                        arrayScore
-        total2 += 2;
-                    }
-                    break;
+// Appel de la fonction pour avoir les totaux
+const sumOfOne = sumOfElements(array, 1);
+console.log("La somme des 1 dans le tableau est : " + sumOfOne);
 
-                    case 3:
-                        if (!arrayScore.total3) {
-                            arrayScore.
-                            array
-            arrayScore.total3 = 3;
-                        } else {
-                            arrayScore.
-                            arrayScore
-            total3 += 3;
-                        }
-                        break;
+const sumOfTwo = sumOfElements(array, 2);
+console.log("La somme des 2 dans le tableau est : " + sumOfTwo);
 
-                    case 4:
-                if (!arrayScore.total4) {
-                    arrayScore.
-                    array
-    arrayScore.total4 = 4;
-                } else {
-                    arrayScore.
-                    arrayScore
-    total4 += 4;
-                }
-                break;
+const sumOfThree = sumOfElements(array, 3);
+console.log("La somme des 3 dans le tableau est : " + sumOfThree);
 
-                    case 5:
-                        if (!arrayScore.total5) {
-                            arrayScore.
-                            array
-            arrayScore.total5 = 5;
-                        } else {
-                            arrayScore.
-                            arrayScore
-            total5 += 5;
-                        }
-                        break;
+const sumOfFor = sumOfElements(array, 4);
+console.log("La somme des 4 dans le tableau est : " + sumOfFor);
 
-                    case 6:
-                        if (!arrayScore.total6) {
-                            arrayScore.
-                            array
-            arrayScore.total6 = 6;
-                        } else {
-                            arrayScore.
-                            arrayScore
-            total6 += 6;
-                            }
-                        break;
+const sumOfFive = sumOfElements(array, 5);
+console.log("La somme des 5 dans le tableau est : " + sumOfFive);
 
-                    case (!sumPoints == 63):
-            arrayScore.bonus = 35;
-                        break;
-            }
-        }
-        console.log(arrayScore);
+const sumOfSix = sumOfElements(array, 6);
+console.log("La somme des 6 dans le tableau est : " + sumOfSix);
 
+// condition (si la somme est différent de 0) pour modifier les valeurs des paramètres de l'objet
+if (sumOfOne != 0) {
+    Object.defineProperty(tableauScore, "total1", {
+        value: sumOfOne,
+        writable: false
+    });
+    console.log(tableauScore.total1);
+}
 
+if (sumOfTwo != 0) {
+    Object.defineProperty(tableauScore, "total2", {
+        value: sumOfTwo,
+        writable: false
+    });
+    console.log(tableauScore.total2);
+}
 
-//5
+if (sumOfThree != 0) {
+    Object.defineProperty(tableauScore, "total3", {
+        value: sumOfThree,
+        writable: false
+    });
+    console.log(tableauScore.total3);
+}
 
-//     case 'value1 + value2 + value3 + value4 + value5 + value6 >= 63':
-//         bonus.forEach(score => {
-//             arrayScore.defineProperty(arrayScore, bonus, '35');
-//         });
-//     break;
-// }
+if (sumOfFor != 0) {
+    Object.defineProperty(tableauScore, "total4", {
+        value: sumOfFor,
+        writable: false
+    });
+    console.log(tableauScore.total4);
+}
+
+if (sumOfFive != 0) {
+    Object.defineProperty(tableauScore, "total5", {
+        value: sumOfFive,
+        writable: false
+    });
+    console.log(tableauScore.total5);
+}
+
+if (sumOfSix != 0) {
+    Object.defineProperty(tableauScore, "total6", {
+        value: sumOfSix,
+        writable: false
+    });
+    console.log(tableauScore.total6);
+}
+
+console.log(tableauScore);
+
+// Condition pour le bonus (si total1 + total2 + total3 + total4 + total5 + total6 >= 63) alors ajout de 35 pts bonus dans le tableau de csore
+if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauScore.total4 + tableauScore.total5 + tableauScore.total6 >= 63) { 
+    Object.defineProperty(tableauScore, "bonus", {
+        value: 35,
+        writable: false
+    })
+    console.log(tableauScore);
+}
 
 
 // // // // // // // // // // // // // // // // // // // //
