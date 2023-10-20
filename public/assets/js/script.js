@@ -18,7 +18,7 @@ rollDices(5);
 // Affecter visuellement aux dés les résultats du lancer 
 let btnRollDices = () => {
     rollDices(5);
-    for(index=0;index<dices.length;index++){
+    for (index = 0; index < dices.length; index++) {
         dices[index].innerHTML = dicesValues[index];
     }
 }
@@ -26,15 +26,52 @@ let btnRollDices = () => {
 // Event Listener 
 rollDicesButton.addEventListener("click", btnRollDices)
 
-
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 1.Fin fonction Lancer les dés // // // //
 // // // // // // // // // // // // // // // // // // // //
 
-
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 2.Fonction Bloquer les dés // // // // //
 // // // // // // // // // // // // // // // // // // // //
+
+// récupération des chaque dè 
+const dice1 = document.getElementById("dice1");
+const dice2 = document.getElementById("dice2");
+const dice3 = document.getElementById("dice3");
+const dice4 = document.getElementById("dice4");
+const dice5 = document.getElementById("dice5");
+
+function restartDices() {
+
+    let keepDices = [];
+
+    numberOfTheDicesKept 
+    numberOfTheDices
+    
+
+    keepDices.push(4, 5);
+
+    console.log(keepDices);
+
+    let resultsSecondRoll = rollDices(3);
+    console.log(resultsSecondRoll);
+
+    resultsSecondRoll.forEach((dice) => {
+        // choix utilisateur 
+        console.log(keepDices.push(dice));
+    })
+    console.log(keepDices);
+
+}
+
+// restartDices();
+
+// // Event Listener 
+dice1.addEventListener("click", restartDices);
+dice2.addEventListener("click", restartDices);
+dice3.addEventListener("click", restartDices);
+dice4.addEventListener("click", restartDices);
+dice5.addEventListener("click", restartDices);
 
 
 
@@ -43,10 +80,8 @@ rollDicesButton.addEventListener("click", btnRollDices)
 // // // // // // // // // // // // // // // // // // // //
 
 
-
-
 // // // // // // // // // // // // // // // // // // // //
-// // // 3.Fonctions pour chaque combinaison possible // // 
+// // // 3.Fonctions pour chaque combinaison possible // //
 // // // // // // // // // // // // // // // // // // // //
 
 // total1
@@ -60,6 +95,29 @@ rollDicesButton.addEventListener("click", btnRollDices)
 
 // carré
 // full
+
+// let dicesValues = [2 ,2 ,2 ,3 ,3]
+// // déterminer le nombres d'occurence d'une valeur
+
+// const nbrOfoccurrences = (value) => {
+//     let nbr = 0
+//     dicesValues.forEach((dicesValue, i) => {
+//         if (value == dicesValue){
+//             nbr++
+//         }
+
+//     })
+//     return nbr
+// };
+
+// console.log(nbrOfoccurrences(1));
+// console.log(nbrOfoccurrences(2));
+// console.log(nbrOfoccurrences(3));
+// console.log(nbrOfoccurrences(4));
+// console.log(nbrOfoccurrences(5));
+// console.log(nbrOfoccurrences(6));
+
+
 // petiteSuite
 // grandeSuite
 // yams
