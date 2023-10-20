@@ -38,6 +38,7 @@ rollDicesButton.addEventListener("click", btnRollDices)
 // // // // // // // // // // // // // // // // // // // //
 
 
+
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 2.Fin Fonction Bloquer les dés// // // //
 // // // // // // // // // // // // // // // // // // // //
@@ -57,6 +58,7 @@ rollDicesButton.addEventListener("click", btnRollDices)
 // total6
 // bonus
 // brelan
+
 // carré
 // full
 // petiteSuite

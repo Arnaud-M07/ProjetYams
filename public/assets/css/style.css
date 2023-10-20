@@ -1,13 +1,24 @@
+/* Hero Banner */
+.hero-banner{
+    height: 15vh;
+    background-image: url();
+}
+
+
 /* Dés */
+.dice-part{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .div-dice{
-    height: 50vh;
+    height: 40vh;
     background-color: #F8F8F8;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
-    
 }
 
 .dice button{
@@ -20,9 +31,8 @@
 }
 
 .dice button:hover{
-    background-color: #242424ed;
+    background-color: #242424d8;
 }
-
 
 .div-btn{
     padding-top: 20px;
