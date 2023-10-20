@@ -8,6 +8,17 @@
 // // // // // // // // // // // // // // // // // // // //
 
 
+const numberOfTheTrials = 3;
+let dicesValues = [];
+
+function rollDices(numberOfTheTotalDices) {
+    for (let i = 0; i < numberOfTheDice; i++) {
+        dicesValues[i] = Math.floor(Math.random() * 6 + 1);
+    }
+    console.log(dicesValues);
+}
+
+rollDices(5);
 
 
 // // // // // // // // // // // // // // // // // // // //
