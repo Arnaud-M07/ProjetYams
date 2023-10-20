@@ -1,6 +1,31 @@
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 1.Fonction Lancer les dés // // // // //
 // // // // // // // // // // // // // // // // // // // //
+let dices = document.querySelectorAll('.diceButton');// Récupération des élements Dés
+let rollDicesButton = document.getElementById('throwDice');// Récupération du bouton "Lancer les dés"
+
+// Fonction Lancer de dés - Jing
+const numberOfTheTrials = 3;
+let dicesValues = [];
+
+function rollDices(numberOfTheTotalDices) {
+    for (let i = 0; i < numberOfTheTotalDices; i++) {
+        dicesValues[i] = Math.floor(Math.random() * 6 + 1);
+    };
+};
+rollDices(5);
+
+// Affecter visuellement aux dés les résultats du lancer 
+let btnRollDices = () => {
+    rollDices(5);
+    for(index=0;index<dices.length;index++){
+        dices[index].innerHTML = dicesValues[index];
+    }
+}
+
+// Event Listener 
+rollDicesButton.addEventListener("click", btnRollDices)
+
 
 
 // // // // // // // // // // // // // // // // // // // //
@@ -8,22 +33,10 @@
 // // // // // // // // // // // // // // // // // // // //
 
 
-const numberOfTheTrials = 3;
-let dicesValues = [];
-
-function rollDices(numberOfTheTotalDices) {
-    for (let i = 0; i < numberOfTheDice; i++) {
-        dicesValues[i] = Math.floor(Math.random() * 6 + 1);
-    }
-    console.log(dicesValues);
-}
-
-rollDices(5);
-
-
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 2.Fonction Bloquer les dés // // // // //
 // // // // // // // // // // // // // // // // // // // //
+
 
 
 // // // // // // // // // // // // // // // // // // // //
@@ -45,6 +58,7 @@ rollDices(5);
 // total6
 // bonus
 // brelan
+
 // carré
 // full
 // petiteSuite
