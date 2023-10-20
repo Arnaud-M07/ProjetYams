@@ -35,43 +35,44 @@ rollDicesButton.addEventListener("click", btnRollDices)
 // // // // // // // // // // // // // // // // // // // //
 
 // récupération des chaque dè 
-const dice1 = document.getElementById("dice1");
-const dice2 = document.getElementById("dice2");
-const dice3 = document.getElementById("dice3");
-const dice4 = document.getElementById("dice4");
-const dice5 = document.getElementById("dice5");
+// const dice1 = document.getElementById("dice1");
+// const dice2 = document.getElementById("dice2");
+// const dice3 = document.getElementById("dice3");
+// const dice4 = document.getElementById("dice4");
+// const dice5 = document.getElementById("dice5");
 
-function restartDices() {
+// function blockDices(dice) {
+//     let keepDices = [];
+//     keepDices.push(4, 5);
+//     console.log(keepDices);
+//     let resultsSecondRoll = rollDices(3);
+//     console.log(resultsSecondRoll);
+//     // resultsSecondRoll.forEach((dice) => {
+//     //     // choix utilisateur 
+//     //     console.log(keepDices.push(dice));
+//     // })
+//     // console.log(keepDices);
+// }
 
-    let keepDices = [];
+// blockDices();
+let keepDices = [];
+let count = 0;
 
-    numberOfTheDicesKept 
-    numberOfTheDices
-    
+// Event Listener 
+dices.forEach((dice) => {
+    dice.addEventListener("click", () => {
+        keepDices.push(dice.innerText);
+        dice.classList.add("text-success");
+        dice.disabled;
+        console.log(keepDices);
+        // count ++;
+        // console.log(`nombre des dès bloqués :${count}`);
+        console.log(dicesValues);
+})
+})
 
-    keepDices.push(4, 5);
-
-    console.log(keepDices);
-
-    let resultsSecondRoll = rollDices(3);
-    console.log(resultsSecondRoll);
-
-    resultsSecondRoll.forEach((dice) => {
-        // choix utilisateur 
-        console.log(keepDices.push(dice));
-    })
-    console.log(keepDices);
-
-}
-
-// restartDices();
-
-// // Event Listener 
-dice1.addEventListener("click", restartDices);
-dice2.addEventListener("click", restartDices);
-dice3.addEventListener("click", restartDices);
-dice4.addEventListener("click", restartDices);
-dice5.addEventListener("click", restartDices);
+// Event Listener 
+rollDicesButton.addEventListener("click", btnRollDices)
 
 
 // // // // // // // // // // // // // // // // // // // //
