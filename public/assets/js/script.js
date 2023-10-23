@@ -21,62 +21,62 @@ let keepDices = [];
 let keepDicesPositions = [];
 
 function rollDices(numberOfTheTotalDices) {
-  let dicesValues = [];
-  for (let i = 0; i < numberOfTheTotalDices; i++) {
+    let dicesValues = [];
+    for (let i = 0; i < numberOfTheTotalDices; i++) {
     dicesValues[i] = Math.floor(Math.random() * 6 + 1);
-  }
+    }
   // compter le nombre des fois pour les lancers des dés
-  countNbOfThrow++;
+    countNbOfThrow++;
 
   // si 3 fois, 
-  if (countNbOfThrow === numberOfTheTrials) {
+if (countNbOfThrow === numberOfTheTrials) {
     // désactiver la bouton 
     rollDicesButton.disabled;
     // mettre la bouton en couleur "rouge" 
     rollDicesButton.classList.add("text-danger");
-  }
+}
 
-  return dicesValues;
+return dicesValues;
 }
 
 // Affecter visuellement aux dés les résultats du lancer
 let btnRollDices = () => {
 
   // bloquer la fonction "rollDices" quand on a lancé 3 fois
-  if (countNbOfThrow === numberOfTheTrials) {
+if (countNbOfThrow === numberOfTheTrials) {
     return;
-  }
+}
 
   // afficher le message pour indiquer qu'il reste encore 2 lancers
-  if(countNbOfThrow ===0 ) {
+if(countNbOfThrow ===0 ) {
     messageOf2throwsLeft.classList.remove("d-none")
-  }
+}
 
   // afficher le message pour indiquer qu'il reste encore 1 lancers
-  if(countNbOfThrow ===1 ) {
+if(countNbOfThrow ===1 ) {
     messageOf2throwsLeft.classList.add("d-none")
     messageOf1throwLeft.classList.remove("d-none")
-  }
+}
 
  // afficher le message pour indiquer qu'il ne reste plus de lancer
-  if(countNbOfThrow ===2 ) {
+if(countNbOfThrow ===2 ) {
     messageOf1throwLeft.classList.add("d-none")
     messageOfNothrowLeft.classList.remove("d-none")
-  }
+}
 
   // lancer le nombre des dès selon le nombre des dès à bloquer / débloquer
-  let dicesValues = rollDices(5 - countBlockedDices + countUnBlockedDices);
-  console.log(`Les valeurs des dés sont : ${dicesValues}`);
+let dicesValues = rollDices(5 - countBlockedDices + countUnBlockedDices);
+console.log(`Les valeurs des dés sont : ${dicesValues}`);
 
   // affecter aux dés les valeurs :
-  for (index = 0; index < 5; index++) {
+for (index = 0; index < 5; index++) {
     // si les dés ne sont pas bloqués : 
     if (!keepDicesPositions.includes(index)) {
       // prendre la 1ère valeur du tableau "diceValues"
-      dices[index].innerHTML = dicesValues.shift();
+    dices[index].innerHTML = dicesValues.shift();
     }
     // si les dés sont bloqués, laisser leurs valeurs telles qu'elles sont
-  }
+}
 };
 
 // Event Listener
@@ -92,88 +92,88 @@ rollDicesButton.addEventListener("click", btnRollDices);
 
 // fonction pour recevoir les cliques
 function receiveDiceClick(clickEvent) {
-  let clickedDice = clickEvent.target;
+let clickedDice = clickEvent.target;
 
   // s'il y a "text-success", on débloque le dè
-  if (clickedDice.classList.contains("text-success")) {
+if (clickedDice.classList.contains("text-success")) {
     unblockDices(clickEvent);
-  } else {
+} else {
     // sinon, on bloque le dè
     blockDices(clickEvent);
-  }
+}
 }
 
 // fonction pour bloquer le dè
 function blockDices(clickEvent) {
-  
+
   // cibler la valeur du dè bloqué
-  let diceClickedValue = parseInt(clickEvent.target.innerText);
-  
+let diceClickedValue = parseInt(clickEvent.target.innerText);
+
   // cibler l'id du dè bloqué
-  let diceClickedId = clickEvent.target.id;
-  
+let diceClickedId = clickEvent.target.id;
+
   // cibler la position du dè bloqué
-  let diceClickedPosition = parseInt(diceClickedId.slice(5, 6));
+let diceClickedPosition = parseInt(diceClickedId.slice(5, 6));
 
   // ajouter une couleur verte pour le dè bloqué
-  clickEvent.target.classList.add("text-success");
+clickEvent.target.classList.add("text-success");
 
   // conserver la valeur du dè bloqué dans le tableau "keepDices"
-  console.log(`Les valeurs des dés cliqués sont : ${diceClickedValue}`);
-  keepDices.push(diceClickedValue);
+console.log(`Les valeurs des dés cliqués sont : ${diceClickedValue}`);
+keepDices.push(diceClickedValue);
 
   // conserver la position du dè bloqué dans le tableau "keepDicesPositions"
-  keepDicesPositions.push(diceClickedPosition);
+keepDicesPositions.push(diceClickedPosition);
 
-  console.log(`L'index du dé cliqué est ${keepDicesPositions}`);
-  console.log( `Dans le tableau "keepDices":${keepDices}`);
+console.log(`L'index du dé cliqué est ${keepDicesPositions}`);
+console.log( `Dans le tableau "keepDices":${keepDices}`);
   // compter le nombre des dès bloqués
-  countBlockedDices++;
+countBlockedDices++;
 }
 
 // fonction pour débloquer le dè
 function unblockDices(clickEvent) {
-  
+
   // cibler la valeur du dè débloqué
-  let diceUnclicked = parseInt(clickEvent.target.innerText);
-  
+let diceUnclicked = parseInt(clickEvent.target.innerText);
+
   // cibler l'id du dè débloqué
-  let diceUnclickedId = clickEvent.target.id;
+let diceUnclickedId = clickEvent.target.id;
 
   // cibler la position du dè débloqué
-  let diceUnclickedPosition = parseInt(diceUnclickedId.slice(5, 6));
+let diceUnclickedPosition = parseInt(diceUnclickedId.slice(5, 6));
 
   // supprimer la couleur verte pour le dè débloqué
-  clickEvent.target.classList.remove("text-success");
+clickEvent.target.classList.remove("text-success");
 
   // chercher l'index dans le tableau "keepDices"
-  const index = keepDices.indexOf(diceUnclicked);
-  console.log(`La valeur du dé débloqué est ${diceUnclicked}, son index dans keepDices est ${index}`);
+const index = keepDices.indexOf(diceUnclicked);
+console.log(`La valeur du dé débloqué est ${diceUnclicked}, son index dans keepDices est ${index}`);
 
   // si l'index existe,
-  if (index > -1) {
+if (index > -1) {
     // supprimer la donnée du tableau
     keepDices.splice(index, 1);
     // compter le nombre des dès débloqués
     countUnBlockedDices++;
-  }
+}
 
   // chercher l'index dans le tableau "keepDicesPositions"
-  const indexPosition = keepDicesPositions.indexOf(diceUnclickedPosition);
-  
+const indexPosition = keepDicesPositions.indexOf(diceUnclickedPosition);
+
   // si l'index existe,
-  if(indexPosition > -1) {
+if(indexPosition > -1) {
     // supprimer la donnée du tableau
     keepDicesPositions.splice(indexPosition, 1);
-  }
-  
-  console.log(`Dans le tableau "keepDicesPositions": ${keepDicesPositions}`);
-  console.log(`Dans le tableau "keepDices: ${keepDices}`);
+}
+
+console.log(`Dans le tableau "keepDicesPositions": ${keepDicesPositions}`);
+console.log(`Dans le tableau "keepDices: ${keepDices}`);
 }
 
 // Event Listener
 dices.forEach((dice) => {
-  dice.addEventListener("click", receiveDiceClick);
+dice.addEventListener("click", receiveDiceClick);
 });
 
 // // // // // // // // // // // // // // // // // // // //
