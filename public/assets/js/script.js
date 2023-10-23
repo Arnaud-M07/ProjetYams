@@ -1,30 +1,86 @@
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 1.Fonction Lancer les dés // // // // //
 // // // // // // // // // // // // // // // // // // // //
-let dices = document.querySelectorAll('.diceButton');// Récupération des élements Dés
-let rollDicesButton = document.getElementById('throwDice');// Récupération du bouton "Lancer les dés"
+let dices = document.querySelectorAll(".diceButton"); // Récupération des élements Dés
+let rollDicesButton = document.getElementById("throwDice"); // Récupération du bouton "Lancer les dés"
+let messageOf2throwsLeft= document.querySelectorAll("p")[0];
+let messageOf1throwLeft= document.querySelectorAll("p")[1];
+let messageOfNothrowLeft= document.querySelectorAll("p")[2];
 
 // Fonction Lancer de dés - Jing
 const numberOfTheTrials = 3;
-let dicesValues = [];
+// compteur pour le nombre des dés à bloquer
+let countBlockedDices = 0;
+// compteur pour le nombre des dés à débloquer
+let countUnBlockedDices = 0;
+// compteur pour le nombre des lancers
+let countNbOfThrow = 0;
+// tableau pour les dés à garder
+let keepDices = [];
+// tableau pour les index des dés à garder
+let keepDicesPositions = [];
 
 function rollDices(numberOfTheTotalDices) {
+    let dicesValues = [];
     for (let i = 0; i < numberOfTheTotalDices; i++) {
-        dicesValues[i] = Math.floor(Math.random() * 6 + 1);
-    };
-};
-rollDices(5);
-
-// Affecter visuellement aux dés les résultats du lancer 
-let btnRollDices = () => {
-    rollDices(5);
-    for (index = 0; index < dices.length; index++) {
-        dices[index].innerHTML = dicesValues[index];
+    dicesValues[i] = Math.floor(Math.random() * 6 + 1);
     }
+  // compter le nombre des fois pour les lancers des dés
+    countNbOfThrow++;
+
+  // si 3 fois, 
+if (countNbOfThrow === numberOfTheTrials) {
+    // désactiver la bouton 
+    rollDicesButton.disabled;
+    // mettre la bouton en couleur "rouge" 
+    rollDicesButton.classList.add("text-danger");
 }
 
-// Event Listener 
-rollDicesButton.addEventListener("click", btnRollDices)
+return dicesValues;
+}
+
+// Affecter visuellement aux dés les résultats du lancer
+let btnRollDices = () => {
+
+  // bloquer la fonction "rollDices" quand on a lancé 3 fois
+if (countNbOfThrow === numberOfTheTrials) {
+    return;
+}
+
+  // afficher le message pour indiquer qu'il reste encore 2 lancers
+if(countNbOfThrow ===0 ) {
+    messageOf2throwsLeft.classList.remove("d-none")
+}
+
+  // afficher le message pour indiquer qu'il reste encore 1 lancers
+if(countNbOfThrow ===1 ) {
+    messageOf2throwsLeft.classList.add("d-none")
+    messageOf1throwLeft.classList.remove("d-none")
+}
+
+ // afficher le message pour indiquer qu'il ne reste plus de lancer
+if(countNbOfThrow ===2 ) {
+    messageOf1throwLeft.classList.add("d-none")
+    messageOfNothrowLeft.classList.remove("d-none")
+}
+
+  // lancer le nombre des dès selon le nombre des dès à bloquer / débloquer
+let dicesValues = rollDices(5 - countBlockedDices + countUnBlockedDices);
+console.log(`Les valeurs des dés sont : ${dicesValues}`);
+
+  // affecter aux dés les valeurs :
+for (index = 0; index < 5; index++) {
+    // si les dés ne sont pas bloqués : 
+    if (!keepDicesPositions.includes(index)) {
+      // prendre la 1ère valeur du tableau "diceValues"
+    dices[index].innerHTML = dicesValues.shift();
+    }
+    // si les dés sont bloqués, laisser leurs valeurs telles qu'elles sont
+}
+};
+
+// Event Listener
+rollDicesButton.addEventListener("click", btnRollDices);
 
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 1.Fin fonction Lancer les dés // // // //
@@ -34,51 +90,96 @@ rollDicesButton.addEventListener("click", btnRollDices)
 // // // // // // 2.Fonction Bloquer les dés // // // // //
 // // // // // // // // // // // // // // // // // // // //
 
-// récupération des chaque dè 
-const dice1 = document.getElementById("dice1");
-const dice2 = document.getElementById("dice2");
-const dice3 = document.getElementById("dice3");
-const dice4 = document.getElementById("dice4");
-const dice5 = document.getElementById("dice5");
+// fonction pour recevoir les cliques
+function receiveDiceClick(clickEvent) {
+let clickedDice = clickEvent.target;
 
-function restartDices() {
-
-    let keepDices = [];
-
-    numberOfTheDicesKept 
-    numberOfTheDices
-    
-
-    keepDices.push(4, 5);
-
-    console.log(keepDices);
-
-    let resultsSecondRoll = rollDices(3);
-    console.log(resultsSecondRoll);
-
-    resultsSecondRoll.forEach((dice) => {
-        // choix utilisateur 
-        console.log(keepDices.push(dice));
-    })
-    console.log(keepDices);
-
+  // s'il y a "text-success", on débloque le dè
+if (clickedDice.classList.contains("text-success")) {
+    unblockDices(clickEvent);
+} else {
+    // sinon, on bloque le dè
+    blockDices(clickEvent);
+}
 }
 
-// restartDices();
+// fonction pour bloquer le dè
+function blockDices(clickEvent) {
 
-// // Event Listener 
-dice1.addEventListener("click", restartDices);
-dice2.addEventListener("click", restartDices);
-dice3.addEventListener("click", restartDices);
-dice4.addEventListener("click", restartDices);
-dice5.addEventListener("click", restartDices);
+  // cibler la valeur du dè bloqué
+let diceClickedValue = parseInt(clickEvent.target.innerText);
 
+  // cibler l'id du dè bloqué
+let diceClickedId = clickEvent.target.id;
+
+  // cibler la position du dè bloqué
+let diceClickedPosition = parseInt(diceClickedId.slice(5, 6));
+
+  // ajouter une couleur verte pour le dè bloqué
+clickEvent.target.classList.add("text-success");
+
+  // conserver la valeur du dè bloqué dans le tableau "keepDices"
+console.log(`Les valeurs des dés cliqués sont : ${diceClickedValue}`);
+keepDices.push(diceClickedValue);
+
+  // conserver la position du dè bloqué dans le tableau "keepDicesPositions"
+keepDicesPositions.push(diceClickedPosition);
+
+console.log(`L'index du dé cliqué est ${keepDicesPositions}`);
+console.log( `Dans le tableau "keepDices":${keepDices}`);
+  // compter le nombre des dès bloqués
+countBlockedDices++;
+}
+
+// fonction pour débloquer le dè
+function unblockDices(clickEvent) {
+
+  // cibler la valeur du dè débloqué
+let diceUnclicked = parseInt(clickEvent.target.innerText);
+
+  // cibler l'id du dè débloqué
+let diceUnclickedId = clickEvent.target.id;
+
+  // cibler la position du dè débloqué
+let diceUnclickedPosition = parseInt(diceUnclickedId.slice(5, 6));
+
+  // supprimer la couleur verte pour le dè débloqué
+clickEvent.target.classList.remove("text-success");
+
+  // chercher l'index dans le tableau "keepDices"
+const index = keepDices.indexOf(diceUnclicked);
+console.log(`La valeur du dé débloqué est ${diceUnclicked}, son index dans keepDices est ${index}`);
+
+  // si l'index existe,
+if (index > -1) {
+    // supprimer la donnée du tableau
+    keepDices.splice(index, 1);
+    // compter le nombre des dès débloqués
+    countUnBlockedDices++;
+}
+
+  // chercher l'index dans le tableau "keepDicesPositions"
+const indexPosition = keepDicesPositions.indexOf(diceUnclickedPosition);
+
+  // si l'index existe,
+if(indexPosition > -1) {
+    // supprimer la donnée du tableau
+    keepDicesPositions.splice(indexPosition, 1);
+}
+
+console.log(`Dans le tableau "keepDicesPositions": ${keepDicesPositions}`);
+console.log(`Dans le tableau "keepDices: ${keepDices}`);
+}
+
+// Event Listener
+dices.forEach((dice) => {
+dice.addEventListener("click", receiveDiceClick);
+});
 
 
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 2.Fin Fonction Bloquer les dés// // // //
 // // // // // // // // // // // // // // // // // // // //
-
 
 // // // // // // // // // // // // // // // // // // // //
 // // // 3.Fonctions pour chaque combinaison possible // //
@@ -261,13 +362,14 @@ if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauSco
     console.log(tableauScore);
 }
 
+// petiteSuite
+// grandeSuite
+// yams
+// chance
 
 // // // // // // // // // // // // // // // // // // // //
 // // // 3.Fin Fonctions pour chaque combinaison possible //
 // // // // // // // // // // // // // // // // // // // //
-
-
-
 
 // // // // // // // // // // // // // // // // // // // //
 // // // // 4.Fonction Calcul des points // // // // // //
