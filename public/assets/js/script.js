@@ -412,7 +412,7 @@ if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauSco
 // petiteSuite
 // grandeSuite
 // yams
-// chance
+// chance 
 
 // // // // // // // // // // // // // // // // // // // //
 // // // 3.Fin Fonctions pour chaque combinaison possible //
