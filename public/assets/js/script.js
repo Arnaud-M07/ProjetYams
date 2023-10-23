@@ -34,6 +34,9 @@ rollDicesButton.addEventListener("click", btnRollDices)
 // // // // // // 1.Fin fonction Lancer les dés // // // //
 // // // // // // // // // // // // // // // // // // // //
 
+
+
+
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 2.Fonction Bloquer les dés // // // // //
 // // // // // // // // // // // // // // // // // // // //
@@ -459,4 +462,4 @@ calcPoints();
 
 // // Vous pouvez ajouter d'autres catégories de la même manière
 
-// console.log(arrayScore);
+// console.log(arrayScore);/
