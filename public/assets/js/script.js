@@ -467,6 +467,6 @@ calcPoints();
 //     arrayScore["bonus"] = 35;
 // }
 
-// // Vous pouvez ajouter d'autres catégories de la même manière
+// // Vous pouvez ajouter d'autres catégories de la même manière.
 
 // console.log(arrayScore);
