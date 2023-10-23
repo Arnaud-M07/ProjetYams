@@ -205,17 +205,17 @@ let tableauScore = {
 console.log(tableauScore);
 
 // Exemple de tableau 
-const array = [1, 2, 5, 3, 1, 6, 6, 4, 3, 1, 3, 4, 5, 6, 6, 5, 6, 5, 5, 5, 6];
+// const array = keepDices;
 
 // Création d'une fonction somme des différents dès pour remplir le tableau des scores avec un switch
-sumOfElements = (array, valueToSum) => {
+sumOfElements = (keepDices, valueToSum) => {
     let i = 0;
-    switch (array[i]) {
+    switch (keepDices[i]) {
         case 1:
             let total1 = 0;
             i = 0;
-            for (i; i < array.length; i++) {
-                if (array[i] === valueToSum) {
+            for (i; i < keepDices.length; i++) {
+                if (keepDices[i] === valueToSum) {
                     total1 += valueToSum;
                 }
             }
@@ -224,8 +224,8 @@ sumOfElements = (array, valueToSum) => {
         case 2:
             let total2 = 0;
             i = 0;
-            for (i; i < array.length; i++) {
-                if (array[i] === valueToSum) {
+            for (i; i < keepDices.length; i++) {
+                if (keepDices[i] === valueToSum) {
                     total2 += valueToSum;
                 }
             }
@@ -234,8 +234,8 @@ sumOfElements = (array, valueToSum) => {
         case 3:
             let total3 = 0;
             i = 0;
-            for (i; i < array.length; i++) {
-                if (array[i] === valueToSum) {
+            for (i; i < keepDices.length; i++) {
+                if (keepDices[i] === valueToSum) {
                     total3 += valueToSum;
                 }
             }
@@ -244,8 +244,8 @@ sumOfElements = (array, valueToSum) => {
         case 4:
             let total4 = 0;
             i = 0;
-            for (i; i < array.length; i++) {
-                if (array[i] === valueToSum) {
+            for (i; i < keepDices.length; i++) {
+                if (keepDices[i] === valueToSum) {
                     total4 += valueToSum;
                 }
             }
@@ -254,8 +254,8 @@ sumOfElements = (array, valueToSum) => {
         case 5:
             let total5 = 0;
             i = 0;
-            for (i; i < array.length; i++) {
-                if (array[i] === valueToSum) {
+            for (i; i < keepDices.length; i++) {
+                if (keepDices[i] === valueToSum) {
                     total5 += valueToSum;
                 }
             }
@@ -264,8 +264,8 @@ sumOfElements = (array, valueToSum) => {
         case 6:
             let total6 = 0;
             i = 0;
-            for (i; i < array.length; i++) {
-                if (array[i] === valueToSum) {
+            for (i; i < keepDices.length; i++) {
+                if (keepDices[i] === valueToSum) {
                     total6 += valueToSum;
                 }
             }
@@ -284,22 +284,22 @@ sumOfElements = (array, valueToSum) => {
 }
 
 // Appel de la fonction pour avoir les totaux
-const sumOfOne = sumOfElements(array, 1);
+const sumOfOne = sumOfElements(keepDices, 1);
 console.log("La somme des 1 dans le tableau est : " + sumOfOne);
 
-const sumOfTwo = sumOfElements(array, 2);
+const sumOfTwo = sumOfElements(keepDices, 2);
 console.log("La somme des 2 dans le tableau est : " + sumOfTwo);
 
-const sumOfThree = sumOfElements(array, 3);
+const sumOfThree = sumOfElements(keepDices, 3);
 console.log("La somme des 3 dans le tableau est : " + sumOfThree);
 
-const sumOfFor = sumOfElements(array, 4);
+const sumOfFor = sumOfElements(keepDices, 4);
 console.log("La somme des 4 dans le tableau est : " + sumOfFor);
 
-const sumOfFive = sumOfElements(array, 5);
+const sumOfFive = sumOfElements(keepDices, 5);
 console.log("La somme des 5 dans le tableau est : " + sumOfFive);
 
-const sumOfSix = sumOfElements(array, 6);
+const sumOfSix = sumOfElements(keepDices, 6);
 console.log("La somme des 6 dans le tableau est : " + sumOfSix);
 
 // condition (si la somme est différent de 0) pour modifier les valeurs des paramètres de l'objet
@@ -388,41 +388,58 @@ function calcPoints(){
 // Appel de la fonction
 calcPoints();
 
-
 // // // // // // // // // // // // // // // // // // // //
 // // // // 4.Fonction Calcul des points // // // // // //
 // // // // // // // // // // // // // // // // // // // //
 
 
 
+// // // // // // // // // // // // // // // // // // // //
+// // // // 5.Query Selectors // // // // // // // // // // 
+// // // // // // // // // // // // // // // // // // // //
 
 
+// Récupérer les emplacements html
+let total1html = document.getElementById("total1");
+let total2html = document.getElementById("total2");
+let total3html = document.getElementById("total3");
+let total4html = document.getElementById("total4");
+let total5html = document.getElementById("total5");
+let total6html = document.getElementById("total6");
+
+let brelanhtml = document.getElementById("brelan");
+let carrehtml = document.getElementById("carre");
+let fullhtml = document.getElementById("full");
+let petiteSuitehtml = document.getElementById("petiteSuite");
+let grandeSuitehtml = document.getElementById("grandeSuite");
+let yamshtml = document.getElementById("yams");
+let chancehtml = document.getElementById("chance");
 
 
+// Ajouter visuellement les scores au tableau
+total1html.addEventListener("click", function(){
+    total1html.innerHTML = sumOfOne;
+})
 
+total2html.addEventListener("click", function(){
+    total2html.innerHTML = sumOfTwo;
+})
 
+total3html.addEventListener("click", function(){
+    total3html.innerHTML = sumOfThree;
+})
 
+total4html.addEventListener("click", function(){
+    total4html.innerHTML = sumOfFor;
+})
 
+total5html.addEventListener("click", function(){
+    total5html.innerHTML = sumOfFive;
+})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+total6html.addEventListener("click", function(){
+    total6html.innerHTML = sumOfSix;
+})
 
 
 
