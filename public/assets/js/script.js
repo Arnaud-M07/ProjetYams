@@ -48,8 +48,9 @@ const calc = (value) => {
 
 // // déterminer la présence d'un brelan et calculer les points correspondants
 
-case brelan
-for ( let i=1; i<=6; i++ ) {
+case "brelan"
+
+for ( let i=1; i<=5; i++ ) {
     if (calc(i) >= 3) {
         brelan = i*3
         console.log(brelan);
@@ -66,7 +67,7 @@ break
 // // déterminer présence d'un carré
 
 case carre
-for ( let i=1; i<=6; i++ ) {
+for ( let i=1; i<=5; i++ ) {
     if (calc(i) >= 4) {
         brelan = i*3
         console.log(carre);
