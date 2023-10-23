@@ -409,10 +409,105 @@ if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauSco
     console.log(tableauScore);
 }
 
+// // // // // // Tableau Partie 2 // // // // // // //
+
+// Brelan
+
+    const calcBrelan = (value) => {
+    let nbr = 0;
+    let brelan;
+    keepDices.forEach((keepDice) => {
+        if (value == keepDice){
+            nbr++;
+        }
+    }) 
+
+    if(nbr==3){
+        brelan = value*nbr; 
+    }
+    return brelan;
+
+};
+
+
+// vérifier si l'occurrence est égale à trois ou plus pour savoir si il y a un brelan
+
+
+// carré
+
+const calcCarre = (value) => {
+    let nbr = 0;
+    let carre;
+    keepDices.forEach((keepDice ) => {
+        if (value == keepDice){
+            nbr++;
+        }
+    }) 
+
+    if(nbr==4){
+        brelan = value*nbr; 
+    }
+    return carre;
+
+};
+
+
+
+// full 
+
+const calcFull = (value) => {
+    let nbr = 0;
+    let full;
+    keepDices.forEach((keepDice ) => {
+        if (value == keepDice){
+            nbr++;
+        }
+    }) 
+
+    if((nbr==3) && (nbr == 2)){
+
+    return full = 25;
+
+    };
+}
+
+
 // petiteSuite
+
+
+
+
 // grandeSuite
+
+
 // yams
+
+const calcYams = (value) => {
+    let nbr = 0;
+    let yams;
+    dicesValues.forEach((keepDice) => {
+        if (value == keepDice){
+            nbr++;
+        }
+    }) 
+
+    if(nbr==5){
+        yams = 50; 
+    }
+}    
+    return yams;
+
 // chance
+
+const calcChance = (value) => {
+    let chance
+for (let i = 0; i < dicesValues.length; i++) {
+
+    chance += dicesValues[i];
+    return chance
+}
+}
+
 
 // // // // // // // // // // // // // // // // // // // //
 // // // 3.Fin Fonctions pour chaque combinaison possible //
