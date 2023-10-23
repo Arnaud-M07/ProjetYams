@@ -69,7 +69,7 @@ case carre
 for ( let i=1; i<=6; i++ ) {
     if (calc(i) >= 4) {
         brelan = i*3
-        console.log(brelan);
+        console.log(carre);
         Object.defineProperty(tableau,"brelan"), {
             value = brelan
             writable = false
