@@ -7,6 +7,7 @@ let messageOf2throwsLeft= document.querySelectorAll("p")[0];
 let messageOf1throwLeft= document.querySelectorAll("p")[1];
 let messageOfNothrowLeft= document.querySelectorAll("p")[2];
 
+
 // Fonction Lancer de dés - Jing
 const numberOfTheTrials = 3;
 // compteur pour le nombre des dés à bloquer
@@ -129,6 +130,7 @@ console.log(`L'index du dé cliqué est ${keepDicesPositions}`);
 console.log( `Dans le tableau "keepDices":${keepDices}`);
   // compter le nombre des dès bloqués
 countBlockedDices++;
+sumOfNumbers();
 }
 
 // fonction pour débloquer le dè
@@ -177,6 +179,7 @@ dice.addEventListener("click", receiveDiceClick);
 });
 
 
+console.log(keepDices)
 // // // // // // // // // // // // // // // // // // // //
 // // // // // // 2.Fin Fonction Bloquer les dés// // // //
 // // // // // // // // // // // // // // // // // // // //
@@ -202,7 +205,7 @@ let tableauScore = {
     "yams": false,
     "chance": false,
 }
-console.log(tableauScore);
+// console.log(tableauScore);
 
 // Exemple de tableau 
 // const array = keepDices;
@@ -284,23 +287,25 @@ sumOfElements = (keepDices, valueToSum) => {
 }
 
 // Appel de la fonction pour avoir les totaux
-const sumOfOne = sumOfElements(keepDices, 1);
-console.log("La somme des 1 dans le tableau est : " + sumOfOne);
+let sumOfNumbers = () => {
+    const sumOfOne = sumOfElements(keepDices, 1);
+    console.log("La somme des 1 dans le tableau est : " + sumOfOne);
 
-const sumOfTwo = sumOfElements(keepDices, 2);
-console.log("La somme des 2 dans le tableau est : " + sumOfTwo);
+    const sumOfTwo = sumOfElements(keepDices, 2);
+    console.log("La somme des 2 dans le tableau est : " + sumOfTwo);
 
-const sumOfThree = sumOfElements(keepDices, 3);
-console.log("La somme des 3 dans le tableau est : " + sumOfThree);
+    const sumOfThree = sumOfElements(keepDices, 3);
+    console.log("La somme des 3 dans le tableau est : " + sumOfThree);
 
-const sumOfFor = sumOfElements(keepDices, 4);
-console.log("La somme des 4 dans le tableau est : " + sumOfFor);
+    const sumOfFor = sumOfElements(keepDices, 4);
+    console.log("La somme des 4 dans le tableau est : " + sumOfFor);
 
-const sumOfFive = sumOfElements(keepDices, 5);
-console.log("La somme des 5 dans le tableau est : " + sumOfFive);
+    const sumOfFive = sumOfElements(keepDices, 5);
+    console.log("La somme des 5 dans le tableau est : " + sumOfFive);
 
-const sumOfSix = sumOfElements(keepDices, 6);
-console.log("La somme des 6 dans le tableau est : " + sumOfSix);
+    const sumOfSix = sumOfElements(keepDices, 6);
+    console.log("La somme des 6 dans le tableau est : " + sumOfSix);
+}
 
 // condition (si la somme est différent de 0) pour modifier les valeurs des paramètres de l'objet
 if (sumOfOne != 0) {
