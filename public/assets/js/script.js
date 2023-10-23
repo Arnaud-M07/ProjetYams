@@ -237,6 +237,7 @@ let i = 0;
 const sumOfElements = (keepDices, combination) => {
     switch (combination) {
         case 'total1':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices[i] === 1) {
@@ -247,6 +248,7 @@ const sumOfElements = (keepDices, combination) => {
         break;
 
         case 'total2':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices[i] === 2) {
@@ -257,6 +259,7 @@ const sumOfElements = (keepDices, combination) => {
         break;
 
         case 'total3':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices[i] === 3) {
@@ -267,6 +270,7 @@ const sumOfElements = (keepDices, combination) => {
         break;
     
         case 'total4':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices[i] === 4) {
@@ -277,6 +281,7 @@ const sumOfElements = (keepDices, combination) => {
         break;
     
         case 'total5':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices[i] === 5) {
@@ -287,6 +292,7 @@ const sumOfElements = (keepDices, combination) => {
         break;
     
         case 'total6':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices[i] === 6) {
@@ -300,15 +306,17 @@ const sumOfElements = (keepDices, combination) => {
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) ) {
+                return
                 }
             }
             tableauScore.petite_suite = 30;
         break;
 
-        case 'petiteSuite':
+        case 'grandeSuite':
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6) ) {
+                return
                 }
             }
             tableauScore.grande_suite = 35;
@@ -348,14 +356,23 @@ console.log(total);
         const sumOfSix = sumOfElements(keepDices, 'total6');
         total6html.innerHTML = sumOfSix;
     })
+    petiteSuitehtml.addEventListener("click", function(){
+        sumOfElements(keepDices, 'petiteSuite');
+        if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5)) {
+            petiteSuitehtml.innerHTML = 30;
+        }
+    })
+    grandeSuitehtml.addEventListener("click", function(){
+        sumOfElements(keepDices, 'grandeSuite');
+        if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6)) {
+        grandeSuitehtml.innerHTML = 35;
+        }
+    })
 
 // Condition pour le bonus (si total1 + total2 + total3 + total4 + total5 + total6 >= 63) alors ajout de 35 pts bonus dans le tableau de csore
 if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauScore.total4 + tableauScore.total5 + tableauScore.total6 >= 63) { 
-    Object.defineProperty(tableauScore, "bonus", {
-        value: 35,
-        writable: false
-    })
-}
+    tableauScore.bonus = 35;
+    }
 console.log(tableauScore);
 
 // petiteSuite
