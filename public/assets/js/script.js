@@ -52,11 +52,8 @@ case "brelan"
 
 for ( let i=1; i<=5; i++ ) {
     if (calc(i) >= 3) {
-        brelan = i*3
-        console.log(brelan);
-        Object.defineProperty(tableau,"brelan"), {
-            value = brelan
-            writable = false
+        total = i*3
+
         }
     }
 
@@ -66,14 +63,11 @@ break
 
 // // déterminer présence d'un carré
 
-case carre
+case "carre"
 for ( let i=1; i<=5; i++ ) {
     if (calc(i) >= 4) {
-        brelan = i*3
-        console.log(carre);
-        Object.defineProperty(tableau,"brelan"), {
-            value = brelan
-            writable = false
+        total = i*4
+
         }
     }
 
