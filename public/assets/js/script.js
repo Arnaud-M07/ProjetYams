@@ -112,15 +112,21 @@ sumOfElements = (array, valueToSum) => {
             }
         return total6;
 
-    //     case
-    //         let nbr = 0
-    //         array.forEach((arrayValue, i) => {
-    //             if (value == arrayValue){
-    //                     nbr++
-    //                 }
-    //     return nbr
-    //     });
-    // }
+        // case brelan:
+        //     // Fonction pour rechercher l'occurence des nombres
+        //     let nbr = 0
+        //     const nbrOfoccurrences = (value) => {
+        //         array.forEach((array, i) => {
+        //             if (value == array){
+        //                 nbr++
+        //         }
+        //     })
+        //     return nbr
+        //     // Exemple pour le chiffre 1
+        //     console.log(nbrOfoccurrences(1))
+        //         // if (`$(nbrOfoccurrences) >= 3`) {
+        //         // totalBrelan += 
+        //     }
     }
 }
 
@@ -192,7 +198,6 @@ if (sumOfSix != 0) {
     console.log(tableauScore.total6);
 }
 
-console.log(tableauScore);
 
 // Condition pour le bonus (si total1 + total2 + total3 + total4 + total5 + total6 >= 63) alors ajout de 35 pts bonus dans le tableau de csore
 if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauScore.total4 + tableauScore.total5 + tableauScore.total6 >= 63) { 
@@ -219,8 +224,6 @@ if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauSco
 // // // // // // // // // // // // // // // // // // // //
 // // // // 4.Fonction Calcul des points // // // // // //
 // // // // // // // // // // // // // // // // // // // //
-
-
 
 
 
