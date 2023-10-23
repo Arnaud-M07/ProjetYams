@@ -111,24 +111,26 @@ sumOfElements = (array, valueToSum) => {
                 }
             }
         return total6;
-
-        // case brelan:
-        //     // Fonction pour rechercher l'occurence des nombres
-        //     let nbr = 0
-        //     const nbrOfoccurrences = (value) => {
-        //         array.forEach((array, i) => {
-        //             if (value == array){
-        //                 nbr++
-        //         }
-        //     })
-        //     return nbr
-        //     // Exemple pour le chiffre 1
-        //     console.log(nbrOfoccurrences(1))
-        //         // if (`$(nbrOfoccurrences) >= 3`) {
-        //         // totalBrelan += 
-        //     }
     }
 }
+
+    //     case brelan:
+    //         // Fonction pour rechercher l'occurence des nombres
+    //         let nbr = 0
+    //         const nbrOfoccurrences = (value) => {
+    //             array.forEach((array, i) => {
+    //                 if (value == array){
+    //                     nbr++
+    //             }
+    //         })
+    //         return nbr
+    //         // Exemple pour le chiffre 1
+    //         console.log(nbrOfoccurrences(1))
+    //             if (`$(nbrOfoccurrences) >= 3`) {
+    //             totalBrelan += 3 * valueToSum
+    //         }
+    // }
+
 
 // Appel de la fonction pour avoir les totaux
 const sumOfOne = sumOfElements(array, 1);
@@ -198,15 +200,17 @@ if (sumOfSix != 0) {
     console.log(tableauScore.total6);
 }
 
-
 // Condition pour le bonus (si total1 + total2 + total3 + total4 + total5 + total6 >= 63) alors ajout de 35 pts bonus dans le tableau de csore
-if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauScore.total4 + tableauScore.total5 + tableauScore.total6 >= 63) { 
-    Object.defineProperty(tableauScore, "bonus", {
-        value: 35,
-        writable: false
-    })
-    console.log(tableauScore);
-}
+let sumOfBonus;
+    if (sumOfBonus = tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauScore.total4 + tableauScore.total5 + tableauScore.total6 >= 63) { 
+        Object.defineProperty(tableauScore, "bonus", {
+            value: 35,
+            writable: false
+            })
+    }
+
+console.log(tableauScore);
+console.log(sumOfBonus);
 
 
 // // // // // // // // // // // // // // // // // // // //
