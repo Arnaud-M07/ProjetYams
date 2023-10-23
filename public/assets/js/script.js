@@ -209,6 +209,29 @@ dice.addEventListener("click", receiveDiceClick);
 //     return nbr
 // };
 
+
+let dicesValues = [5,5,5,2,2]
+
+// déterminer la présence d'un brelan et calculer les points correspondants
+
+const calcBrelan = (value) => {
+    let nbr = 0;
+    let brelan;
+    dicesValues.forEach((dicesValue ) => {
+        if (value == dicesValue){
+            nbr++;
+        }
+    }) 
+
+    if(nbr==3){
+        brelan = value*nbr; 
+    }
+    return brelan;
+};
+
+console.log(calcBrelan(5));
+
+
 // console.log(nbrOfoccurrences(1));
 // console.log(nbrOfoccurrences(2));
 // console.log(nbrOfoccurrences(3));
