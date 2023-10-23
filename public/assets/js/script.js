@@ -1,4 +1,24 @@
 // // // // // // // // // // // // // // // // // // // //
+// // // // // // SELECTORS // // // // // // // // // //
+// // // // // // // // // // // // // // // // // // // //
+// Récuperation des Elements
+let total1html = document.getElementById("total1");
+let total2html = document.getElementById("total2");
+let total3html = document.getElementById("total3");
+let total4html = document.getElementById("total4");
+let total5html = document.getElementById("total5");
+let total6html = document.getElementById("total6");
+
+let brelanhtml = document.getElementById("brelan");
+let carrehtml = document.getElementById("carre");
+let fullhtml = document.getElementById("full");
+let petiteSuitehtml = document.getElementById("petiteSuite");
+let grandeSuitehtml = document.getElementById("grandeSuite");
+let yamshtml = document.getElementById("yams");
+let chancehtml = document.getElementById("chance");
+
+
+// // // // // // // // // // // // // // // // // // // //
 // // // // // // 1.Fonction Lancer les dés // // // // //
 // // // // // // // // // // // // // // // // // // // //
 let dices = document.querySelectorAll(".diceButton"); // Récupération des élements Dés
@@ -6,6 +26,7 @@ let rollDicesButton = document.getElementById("throwDice"); // Récupération du
 let messageOf2throwsLeft= document.querySelectorAll("p")[0];
 let messageOf1throwLeft= document.querySelectorAll("p")[1];
 let messageOfNothrowLeft= document.querySelectorAll("p")[2];
+
 
 
 // Fonction Lancer de dés - Jing
@@ -305,6 +326,27 @@ let sumOfNumbers = () => {
 
     const sumOfSix = sumOfElements(keepDices, 6);
     console.log("La somme des 6 dans le tableau est : " + sumOfSix);
+
+
+    // Ajouter visuellement les scores au tableau
+    total1html.addEventListener("click", function(){
+        total1html.innerHTML = sumOfOne;
+    })
+    total2html.addEventListener("click", function(){
+        total2html.innerHTML = sumOfTwo;
+    })
+    total3html.addEventListener("click", function(){
+        total3html.innerHTML = sumOfThree;
+    })
+    total4html.addEventListener("click", function(){
+        total4html.innerHTML = sumOfFor;
+    })
+    total5html.addEventListener("click", function(){
+        total5html.innerHTML = sumOfFive;
+    })
+    total6html.addEventListener("click", function(){
+        total6html.innerHTML = sumOfSix;
+    })
 }
 
 // condition (si la somme est différent de 0) pour modifier les valeurs des paramètres de l'objet
@@ -396,55 +438,6 @@ calcPoints();
 // // // // // // // // // // // // // // // // // // // //
 // // // // 4.Fonction Calcul des points // // // // // //
 // // // // // // // // // // // // // // // // // // // //
-
-
-
-// // // // // // // // // // // // // // // // // // // //
-// // // // 5.Query Selectors // // // // // // // // // // 
-// // // // // // // // // // // // // // // // // // // //
-
-
-// Récupérer les emplacements html
-let total1html = document.getElementById("total1");
-let total2html = document.getElementById("total2");
-let total3html = document.getElementById("total3");
-let total4html = document.getElementById("total4");
-let total5html = document.getElementById("total5");
-let total6html = document.getElementById("total6");
-
-let brelanhtml = document.getElementById("brelan");
-let carrehtml = document.getElementById("carre");
-let fullhtml = document.getElementById("full");
-let petiteSuitehtml = document.getElementById("petiteSuite");
-let grandeSuitehtml = document.getElementById("grandeSuite");
-let yamshtml = document.getElementById("yams");
-let chancehtml = document.getElementById("chance");
-
-
-// Ajouter visuellement les scores au tableau
-total1html.addEventListener("click", function(){
-    total1html.innerHTML = sumOfOne;
-})
-
-total2html.addEventListener("click", function(){
-    total2html.innerHTML = sumOfTwo;
-})
-
-total3html.addEventListener("click", function(){
-    total3html.innerHTML = sumOfThree;
-})
-
-total4html.addEventListener("click", function(){
-    total4html.innerHTML = sumOfFor;
-})
-
-total5html.addEventListener("click", function(){
-    total5html.innerHTML = sumOfFive;
-})
-
-total6html.addEventListener("click", function(){
-    total6html.innerHTML = sumOfSix;
-})
 
 
 
