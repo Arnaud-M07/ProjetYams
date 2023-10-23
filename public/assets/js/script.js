@@ -2,7 +2,7 @@
 
 
 
-/ // // // // // // // // // // // // // // // // // // //
+/// // // // // // // // // // // // // // // // // // //
 // // // // // // 1.Fonction Lancer les dés // // // // //
 // // // // // // // // // // // // // // // // // // // //
 
@@ -35,103 +35,84 @@
 // déterminer la présence d'un brelan et calculer les points correspondants
 
 
+let keepDices = [2,2,2,3,6];
 
-// déterminer la présence d'un brelan et calculer les points correspondants
+// déterminer le nombres d'occurence d'une valeur
 
-    const calcBrelan = (value) => {
-    let nbr = 0;
-    let brelan;
+const calc = (value) => {
+    let nbr = 0
     keepDices.forEach((keepDice) => {
         if (value == keepDice){
-            nbr++;
+            nbr++
         }
-    }) 
 
-    if(nbr==3){
-        brelan = value*nbr; 
-    }
-    return brelan;
-
+    })
+    return nbr
 };
 
+// // déterminer la présence d'un brelan et calculer les points correspondants
 
-// vérifier si l'occurrence est égale à trois ou plus pour savoir si il y a un brelan
-
-
-// carré
-
-const calcCarre = (value) => {
-    let nbr = 0;
-    let carre;
-    keepDices.forEach((keepDice ) => {
-        if (value == keepDice){
-            nbr++;
+case brelan
+for ( let i=1; i<=6; i++ ) {
+    if (calc(i) >= 3) {
+        brelan = i*3
+        console.log(brelan);
+        Object.defineProperty(tableau,"brelan"), {
+            value = brelan
+            writable = false
         }
-    }) 
-
-    if(nbr==4){
-        brelan = value*nbr; 
     }
-    return carre;
 
-};
-
-
-
-// full 
-
-const calcFull = (value) => {
-    let nbr = 0;
-    let full;
-    keepDices.forEach((keepDice ) => {
-        if (value == keepDice){
-            nbr++;
-        }
-    }) 
-
-    if((nbr==3) && (nbr == 2)){
-
-    return full = 25;
-
-    };
 }
 
+break
 
-// petiteSuite
+// // déterminer présence d'un carré
 
-
-
-
-// grandeSuite
-
-
-// yams
-
-const calcYams = (value) => {
-    let nbr = 0;
-    let yams;
-    dicesValues.forEach((keepDice) => {
-        if (value == keepDice){
-            nbr++;
+case carre
+for ( let i=1; i<=6; i++ ) {
+    if (calc(i) >= 4) {
+        brelan = i*3
+        console.log(brelan);
+        Object.defineProperty(tableau,"brelan"), {
+            value = brelan
+            writable = false
         }
-    }) 
-
-    if(nbr==5){
-        yams = 50; 
     }
-}    
-    return yams;
 
-// chance
-
-const calcChance = (value) => {
-    let chance
-for (let i = 0; i < dicesValues.length; i++) {
-
-    chance += dicesValues[i];
-    return chance
 }
-}
+
+break
+
+
+// // full 
+
+
+
+
+// // petiteSuite
+
+
+
+// // grandeSuite
+
+
+// // yams
+
+
+
+
+
+// // chance
+
+// const calcChance = (value) => {
+//     let chance
+// for (let i = 0; i < keepDices.length; i++) {
+
+//     chance += keepDices[i];
+//     return chance
+// }
+// }
 
 
 // // // // // // // // // // // // // // // // // // // //
