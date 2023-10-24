@@ -29,8 +29,8 @@ body{
     align-items: center;
     background-color: #c94b2594;
     backdrop-filter: blur(10px);
-    box-shadow: 0px 5px 10px #c587742d;
-    border-radius: 10px;
+    /* box-shadow: 0px 5px 10px #c587742d; */
+    border-radius: 0px 0px 10px 10px;
 }
 
 .dice button{
@@ -56,6 +56,15 @@ body{
 
 .btn-lg{
     font-size: 26px !important;
+    background-color: #c94b25e8 !important;
+    border: 0px !important;
+    font-weight: bold !important;
+    transition:.3s;
+}
+
+.btn-lg:hover{
+    transition:.3s;
+    background-color: #c94b25f8 !important;
 }
 
 /* Tableau */
@@ -102,4 +111,17 @@ tbody tr:last-child td{
 td button{
     border: 0px !important;
     border-radius: 5px;
+}
+
+/* Texte Info */
+
+.txt-info{
+    height: 70px;
+    color:#FFF;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #c94b2594;
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
 }
