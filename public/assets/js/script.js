@@ -30,24 +30,29 @@ let messageOfNothrowLeft = document.querySelectorAll("p")[2];
 
 const restart = () => {
         keepDices = [];
+        keepDicesPositions = [];
 
         let dicesValues = rollDices(5);
+
         for (index = 0; index < 5; index++) {
             dices[index].innerHTML = dicesValues[index];
-            
         }
     
         dices.forEach((dice) => {
             dice.classList.remove("text-success");
         })
+        
 
         rollDicesButton.disabled;
         rollDicesButton.classList.remove("text-success");
+        rollDicesButton.classList.remove("text-danger");
         messageOf1throwLeft.classList.add("d-none");
         messageOf2throwsLeft.classList.add("d-none")
         messageOfNothrowLeft.classList.add("d-none");
 
         countNbOfThrow = 0;
+        countBlockedDices = 0;
+        countUnBlockedDices = 0;
     
     }
     // )
@@ -92,6 +97,7 @@ let btnRollDices = () => {
     if (countNbOfThrow === numberOfTheTrials) {
         return;
     }
+    console.log(countNbOfThrow);
 
     // afficher le message pour indiquer qu'il reste encore 2 lancers
     if (countNbOfThrow === 0) {
@@ -359,62 +365,54 @@ console.log(total);
 total1html.addEventListener("click", function () {
     const sumOfOne = sumOfElements(keepDices, 'total1');
     total1html.innerHTML = sumOfOne;
-    if(confirm("Etes-vous sûr de votre choix ?")) {
         restart();
-    }
+        btnRollDices();
 })
 total2html.addEventListener("click", function () {
     const sumOfTwo = sumOfElements(keepDices, 'total2');
     total2html.innerHTML = sumOfTwo;
-    if(confirm("Etes-vous sûr de votre choix ?")) {
         restart();
-    }
+        btnRollDices();
 })
 total3html.addEventListener("click", function () {
     const sumOfThree = sumOfElements(keepDices, 'total3');
     total3html.innerHTML = sumOfThree;
-    if(confirm("Etes-vous sûr de votre choix ?")) {
         restart();
-    }
+        btnRollDices();
 })
 total4html.addEventListener("click", function () {
     const sumOfFor = sumOfElements(keepDices, 'total4');
     total4html.innerHTML = sumOfFor;
-    if(confirm("Etes-vous sûr de votre choix ?")) {
         restart();
-    }
+        btnRollDices();
 })
 total5html.addEventListener("click", function () {
     const sumOfFive = sumOfElements(keepDices, 'total5');
     total5html.innerHTML = sumOfFive;
-    if(confirm("Etes-vous sûr de votre choix ?")) {
         restart();
-    }
+        btnRollDices()
 })
 total6html.addEventListener("click", function () {
     const sumOfSix = sumOfElements(keepDices, 'total6');
     total6html.innerHTML = sumOfSix;
-    if(confirm("Etes-vous sûr de votre choix ?")) {
         restart();
-    }
+        btnRollDices();
 })
 petiteSuitehtml.addEventListener("click", function () {
     sumOfElements(keepDices, 'petiteSuite');
     if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5)) {
         petiteSuitehtml.innerHTML = 30;
     }
-    if(confirm("Etes-vous sûr de votre choix ?")) {
         restart();
-    }
+        btnRollDices();
 })
 grandeSuitehtml.addEventListener("click", function () {
     sumOfElements(keepDices, 'grandeSuite');
     if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6)) {
         grandeSuitehtml.innerHTML = 35;
     }
-    if(confirm("Etes-vous sûr de votre choix ?")) {
         restart();
-    }
+        btnRollDices();
 })
 
 // Condition pour le bonus (si total1 + total2 + total3 + total4 + total5 + total6 >= 63) alors ajout de 35 pts bonus dans le tableau de csore
