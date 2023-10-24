@@ -151,7 +151,7 @@ console.log(`L'index du dé cliqué est ${keepDicesPositions}`);
 console.log( `Dans le tableau "keepDices":${keepDices}`);
   // compter le nombre des dès bloqués
 countBlockedDices++;
-sumOfNumbers();
+sumOfElements();
 }
 
 // fonction pour débloquer le dè
@@ -226,193 +226,307 @@ let tableauScore = {
     "yams": false,
     "chance": false,
 }
-// console.log(tableauScore);
+console.log(tableauScore);
 
 // Exemple de tableau 
 // const array = keepDices;
+const calc = (value) => {
+    let nbr = 0
+    keepDices.forEach((keepDice) => {
+        if (value == keepDice){
+            nbr++
+        }
+
+    })
+    return nbr
+};
+
+function calcYams(keepDices) {
+    const firstElement = keepDices[0];
+// vérifier si les valeurs du tableau sont identiques
+    const result = keepDices.every((element) => {
+return element === firstElement;
+    });
+}
+
 
 // Création d'une fonction somme des différents dès pour remplir le tableau des scores avec un switch
-sumOfElements = (keepDices, valueToSum) => {
-    let i = 0;
-    switch (keepDices[i]) {
-        case 1:
-            let total1 = 0;
+let total = 0;
+let i = 0;
+const sumOfElements = (keepDices, combination) => {
+    switch (combination) {
+        case 'total1':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
-                if (keepDices[i] === valueToSum) {
-                    total1 += valueToSum;
+                if (keepDices[i] === 1) {
+                    total += 1;
                 }
             }
-            return total1;
+            tableauScore.total1 = total
+        break;
 
-        case 2:
-            let total2 = 0;
+        case 'total2':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
-                if (keepDices[i] === valueToSum) {
-                    total2 += valueToSum;
+                if (keepDices[i] === 2) {
+                    total += 2;
                 }
             }
-        return total2;
+            tableauScore.total2 = total
+        break;
 
-        case 3:
-            let total3 = 0;
+        case 'total3':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
-                if (keepDices[i] === valueToSum) {
-                    total3 += valueToSum;
+                if (keepDices[i] === 3) {
+                    total += 3;
                 }
             }
-        return total3;
+            tableauScore.total3 = total
+        break;
     
-        case 4:
-            let total4 = 0;
+        case 'total4':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
-                if (keepDices[i] === valueToSum) {
-                    total4 += valueToSum;
+                if (keepDices[i] === 4) {
+                    total += 4;
                 }
             }
-        return total4;
+            tableauScore.total4 = total
+        break;
     
-        case 5:
-            let total5 = 0;
+        case 'total5':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
-                if (keepDices[i] === valueToSum) {
-                    total5 += valueToSum;
+                if (keepDices[i] === 5) {
+                    total += 5;
                 }
             }
-        return total5;
+            tableauScore.total5 = total
+        break;
     
-        case 6:
-            let total6 = 0;
+        case 'total6':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
-                if (keepDices[i] === valueToSum) {
-                    total6 += valueToSum;
+                if (keepDices[i] === 6) {
+                    total += 6;
                 }
             }
-        return total6;
+            tableauScore.total6 = total;
+        break;
+        
+        case "brelan":
+            total = 0;
+            i = 0;
+            for (let i=1; i<=5; i++) {
+                if (calc(i) >= 3) {
+                    total = i*3
+                }
+            }
+            tableauScore.brelan = total
+        break;
+        
+        case "carre":
+            total = 0;
+            i = 0;
+            for (let i=1; i<=5; i++) {
+                if (calc(i) >= 4) {
+                    total = i*4
+                }
+            }
+            tableauScore.carre = total
+        break
+        
+        case 'full':
+        // Remplacer "array" et "value" par keepDices et keepDice
+// Exemple de tableau 
+const array = [3, 3, 3, 5, 5];
 
-    //     case
-    //         let nbr = 0
-    //         array.forEach((arrayValue, i) => {
-    //             if (value == arrayValue){
-    //                     nbr++
-    //                 }
-    //     return nbr
-    //     });
-    // }
+const calcFull = (array) => {
+    let counts = {}; // Objet pour compter combien de fois chaque valeur apparaît
+
+    // Vérifier combien de fois chaque valeur apparaît
+    array.forEach((value) => {
+        // Vérifier si la valeur existe déjà comme une clé dans l'objet
+        if (counts[value]) {
+            // Si la valeur existe déjà, augmenter son compteur de 1
+            counts[value]++;
+        } else {
+            // Si la valeur n'existe pas encore, initialiser son compteur à 1
+            counts[value] = 1;
+        }
+    });
+
+    let hasTriple = false;
+    let hasDouble = false;
+
+    for (const value in counts) {
+        if (counts[value] === 3) {
+            hasTriple = true;
+        } else if (counts[value] === 2) {
+            hasDouble = true;
+        }
     }
+
+    if (hasTriple && hasDouble) {
+        return 25;
+    } else {
+        return 0;
+    } 
+};
+
+const result = calcFull(array);
+console.log("Full:", result);
+        
+
+        case 'petiteSuite':
+            i = 0;
+            for (i; i < keepDices.length; i++) {
+                if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) ) {
+                return
+                }
+            }
+            tableauScore.petite_suite = 30;
+        break;
+
+        case 'grandeSuite':
+            i = 0;
+            for (i; i < keepDices.length; i++) {
+                if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6) ) {
+                return
+                }
+            }
+            tableauScore.grande_suite = 35;
+        break;
+
+        case 'yams':
+            total = 0;
+            function calcYams(keepDices) {
+                const firstElement = keepDices[0];
+            // vérifier si les valeurs du tableau sont identiques
+                const result = keepDices.every((element) => {
+            return element === firstElement;
+            });
+            // afficher le calcul du point
+            if (result) {
+                tableauScore.yams = 50
+            } else {
+                console.log(0);
+            }
+            }
+        break;
+
+        case 'chance':
+            total = 0;
+            keepDices.forEach((nb) => {
+                total += nb;
+            });
+                tableauScore.chance = total
+        break;
+
+        default:
+            console.log("operation non reconnue");
+        break;
+    }
+    return total
 }
-
-// Appel de la fonction pour avoir les totaux
-let sumOfNumbers = () => {
-    const sumOfOne = sumOfElements(keepDices, 1);
-    console.log("La somme des 1 dans le tableau est : " + sumOfOne);
-
-    const sumOfTwo = sumOfElements(keepDices, 2);
-    console.log("La somme des 2 dans le tableau est : " + sumOfTwo);
-
-    const sumOfThree = sumOfElements(keepDices, 3);
-    console.log("La somme des 3 dans le tableau est : " + sumOfThree);
-
-    const sumOfFor = sumOfElements(keepDices, 4);
-    console.log("La somme des 4 dans le tableau est : " + sumOfFor);
-
-    const sumOfFive = sumOfElements(keepDices, 5);
-    console.log("La somme des 5 dans le tableau est : " + sumOfFive);
-
-    const sumOfSix = sumOfElements(keepDices, 6);
-    console.log("La somme des 6 dans le tableau est : " + sumOfSix);
+console.log(total);
 
 
-    // Ajouter visuellement les scores au tableau
-    total1html.addEventListener("click", function(){
-        total1html.innerHTML = sumOfOne;
-    })
-    total2html.addEventListener("click", function(){
-        total2html.innerHTML = sumOfTwo;
-    })
-    total3html.addEventListener("click", function(){
-        total3html.innerHTML = sumOfThree;
-    })
-    total4html.addEventListener("click", function(){
-        total4html.innerHTML = sumOfFor;
-    })
-    total5html.addEventListener("click", function(){
-        total5html.innerHTML = sumOfFive;
-    })
-    total6html.addEventListener("click", function(){
-        total6html.innerHTML = sumOfSix;
-    })
-}
-
-// condition (si la somme est différent de 0) pour modifier les valeurs des paramètres de l'objet
-if (sumOfOne != 0) {
-    Object.defineProperty(tableauScore, "total1", {
-        value: sumOfOne,
-        writable: false
-    });
-    console.log(tableauScore.total1);
-}
-
-if (sumOfTwo != 0) {
-    Object.defineProperty(tableauScore, "total2", {
-        value: sumOfTwo,
-        writable: false
-    });
-    console.log(tableauScore.total2);
-}
-
-if (sumOfThree != 0) {
-    Object.defineProperty(tableauScore, "total3", {
-        value: sumOfThree,
-        writable: false
-    });
-    console.log(tableauScore.total3);
-}
-
-if (sumOfFor != 0) {
-    Object.defineProperty(tableauScore, "total4", {
-        value: sumOfFor,
-        writable: false
-    });
-    console.log(tableauScore.total4);
-}
-
-if (sumOfFive != 0) {
-    Object.defineProperty(tableauScore, "total5", {
-        value: sumOfFive,
-        writable: false
-    });
-    console.log(tableauScore.total5);
-}
-
-if (sumOfSix != 0) {
-    Object.defineProperty(tableauScore, "total6", {
-        value: sumOfSix,
-        writable: false
-    });
-    console.log(tableauScore.total6);
-}
-
-console.log(tableauScore);
+// Ajouter visuellement les scores au tableau
+total1html.addEventListener("click", function(){
+    const sumOfOne = sumOfElements(keepDices, 'total1');
+    total1html.innerHTML = sumOfOne;
+    setTimeout(() => {
+        if(confirm("Confirmez-vous votre choix?")) {
+            countNbOfThrow ===0;
+        }
+    }, 2000);
+})
+total2html.addEventListener("click", function(){
+    const sumOfTwo = sumOfElements(keepDices, 'total2');
+    total2html.innerHTML = sumOfTwo;
+    setTimeout(() => {
+        if(confirm("Confirmez-vous votre choix?")) {
+            location.reload();
+        }
+    }, 2000);
+})
+total3html.addEventListener("click", function(){
+    const sumOfThree = sumOfElements(keepDices, 'total3');
+    total3html.innerHTML = sumOfThree;
+    setTimeout(() => {
+        if(confirm("Confirmez-vous votre choix?")) {
+            location.reload();
+        }
+    }, 2000);
+})
+total4html.addEventListener("click", function(){
+    const sumOfFor = sumOfElements(keepDices, 'total4');
+    total4html.innerHTML = sumOfFor;
+    setTimeout(() => {
+        if(confirm("Confirmez-vous votre choix?")) {
+            location.reload();
+        }
+    }, 2000);
+})
+total5html.addEventListener("click", function(){
+    const sumOfFive = sumOfElements(keepDices, 'total5');
+    total5html.innerHTML = sumOfFive;
+    setTimeout(() => {
+        if(confirm("Confirmez-vous votre choix?")) {
+            location.reload();
+        }
+    }, 2000);
+})
+total6html.addEventListener("click", function(){
+    const sumOfSix = sumOfElements(keepDices, 'total6');
+    total6html.innerHTML = sumOfSix;
+    setTimeout(() => {
+        if(confirm("Confirmez-vous votre choix?")) {
+            location.reload();
+        }
+    }, 2000);
+})
+petiteSuitehtml.addEventListener("click", function(){
+    sumOfElements(keepDices, 'petiteSuite');
+    if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5)) {
+        petiteSuitehtml.innerHTML = 30;
+    }
+    setTimeout(() => {
+        if(confirm("Confirmez-vous votre choix?")) {
+            location.reload();
+        }
+    }, 2000);
+})
+grandeSuitehtml.addEventListener("click", function(){
+    sumOfElements(keepDices, 'grandeSuite');
+    if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6)) {
+    grandeSuitehtml.innerHTML = 35;
+    }
+    setTimeout(() => {
+        if(confirm("Confirmez-vous votre choix?")) {
+            location.reload();
+        }
+    }, 2000);
+})
 
 // Condition pour le bonus (si total1 + total2 + total3 + total4 + total5 + total6 >= 63) alors ajout de 35 pts bonus dans le tableau de csore
 if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauScore.total4 + tableauScore.total5 + tableauScore.total6 >= 63) { 
-    Object.defineProperty(tableauScore, "bonus", {
-        value: 35,
-        writable: false
-    })
-    console.log(tableauScore);
-}
+    tableauScore.bonus = 35;
+    }
+console.log(tableauScore);
 
 // petiteSuite
 // grandeSuite
 // yams
-// chance 
+// chance
 
 // // // // // // // // // // // // // // // // // // // //
 // // // 3.Fin Fonctions pour chaque combinaison possible //
@@ -467,6 +581,6 @@ calcPoints();
 //     arrayScore["bonus"] = 35;
 // }
 
-// // Vous pouvez ajouter d'autres catégories de la même manière.
+// // Vous pouvez ajouter d'autres catégories de la même manière
 
 // console.log(arrayScore);
