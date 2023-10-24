@@ -1,8 +1,17 @@
-/* Hero Banner */
-.hero-banner{
-    height: 15vh;
-    background-image: url();
+/* Main */
+body{
+    background-image: url(/public/assets/img/james-kemp-MbT8YwWHE0c-unsplash.jpg);
+    background-size: cover;
+    /* background-position: center; */
+    
 }
+
+/* Hero Banner */
+/* .hero-banner{
+    height: 18vh;
+    background-image: url(/public/assets/img/skyler-sawyer-Wq-nmL12bCU-unsplash.jpg);
+    
+} */
 
 
 /* Dés */
@@ -14,11 +23,14 @@
 
 .div-dice{
     height: 40vh;
-    background-color: #F8F8F8;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background-color: #c94b2594;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 5px 10px #c587742d;
+    border-radius: 10px;
 }
 
 .dice button{
@@ -28,6 +40,8 @@
     margin: 10px;
     background-color: #242424;
     color: #FFF;
+    font-weight: bold;
+    font-size:26px;
 }
 
 .dice button:hover{
@@ -40,7 +54,51 @@
     justify-content: center;
 }
 
+.btn-lg{
+    font-size: 26px !important;
+}
+
 /* Tableau */
+.col-arrayScore{
+    padding-top: 10vh;
+}
+
+thead th:first-child{
+    border-radius: 10px 0px 0px 0px;
+}
+thead th:nth-child(2){
+    border-radius: 0px 10px 0px 0px;
+}
+
+tbody tr:last-child th{
+    border-radius: 0px 0px 0px 10px;
+}
+
+tbody tr:last-child td{
+    border-radius: 0px 0px 10px 0px;
+}
+
+.col-arrayScore .table th{
+    background-color: #c94b25e1;
+    backdrop-filter: blur(5px);
+}
+
+.col-arrayScore .table td{
+    background-color: #c58774bd;
+    backdrop-filter: blur(5px);
+    font-size: 17px;
+}
+
+.col-arrayScore .table td button{
+    background-color: #242424;
+    backdrop-filter: blur(5px);
+    color:#fff;
+}
+
+.col-arrayScore .table tr{
+    border: 0px;
+}
+
 td button{
     border: 0px !important;
     border-radius: 5px;
