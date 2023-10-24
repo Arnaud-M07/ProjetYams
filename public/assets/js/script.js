@@ -227,6 +227,15 @@ let tableauScore = {
     "chance": false,
 }
 // console.log(tableauScore);
+    if (tableauScore.includes("false")) {
+    
+    } else {
+        message.innerHTML =`<div id="inner-message">
+                                        <h2 class="titleModal">La partie est terminée</h2>
+                                        <p class="textModal">Revenez si vous l'osez !<br>                                       
+                                        <a href="index.html"><button type="button" class="btn btn-dark btn-end" id="btnReplay">Rejouer</button></a>
+                            </div>`        
+    }
 
 // Exemple de tableau 
 // const array = keepDices;
