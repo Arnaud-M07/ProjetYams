@@ -6,11 +6,17 @@ body{
     
 }
 
-/* Hero Banner */
-/* .hero-banner{
-    height: 18vh;
-    background-image: url(/public/assets/img/skyler-sawyer-Wq-nmL12bCU-unsplash.jpg);
-    
+/* Header */
+.navbar{
+    height: 7vh;
+    background-color: transparent;
+    position: fixed;
+}
+
+/* .navbar-brand{
+    position: absolute;
+    top: 5vh;
+    left
 } */
 
 

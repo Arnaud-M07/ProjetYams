@@ -9,6 +9,7 @@ let total4html = document.getElementById("total4");
 let total5html = document.getElementById("total5");
 let total6html = document.getElementById("total6");
 
+let bonushtml = document.getElementById("bonus");
 let brelanhtml = document.getElementById("brelan");
 let carrehtml = document.getElementById("carre");
 let fullhtml = document.getElementById("full");
@@ -26,6 +27,42 @@ let rollDicesButton = document.getElementById("throwDice"); // Récupération du
 let messageOf2throwsLeft= document.querySelectorAll("p")[0];
 let messageOf1throwLeft= document.querySelectorAll("p")[1];
 let messageOfNothrowLeft= document.querySelectorAll("p")[2];
+
+
+// Fonction de restart de partie
+const restart = () => {
+    keepDices = [];
+    keepDicesPositions = [];
+
+    let dicesValues = rollDices(5);
+
+    for (index = 0; index < 5; index++) {
+        dices[index].innerHTML = dicesValues[index];
+    }
+
+    dices.forEach((dice) => {
+        dice.classList.remove("text-success");
+    })
+
+
+    rollDicesButton.disabled;
+    rollDicesButton.classList.remove("text-success");
+    rollDicesButton.classList.remove("text-danger");
+    messageOf1throwLeft.classList.add("d-none");
+    messageOf2throwsLeft.classList.add("d-none")
+    messageOfNothrowLeft.classList.add("d-none");
+
+    countNbOfThrow = 0;
+    countBlockedDices = 0;
+    countUnBlockedDices = 0;
+
+}
+
+
+
+
+
+
 
 
 
@@ -226,10 +263,11 @@ let tableauScore = {
     "yams": false,
     "chance": false,
 }
+
 console.log(tableauScore);
 
-// Exemple de tableau 
-// const array = keepDices;
+
+// calul pour brelan et carre
 const calc = (value) => {
     let nbr = 0
     keepDices.forEach((keepDice) => {
@@ -240,14 +278,6 @@ const calc = (value) => {
     })
     return nbr
 };
-
-function calcYams(keepDices) {
-    const firstElement = keepDices[0];
-// vérifier si les valeurs du tableau sont identiques
-    const result = keepDices.every((element) => {
-return element === firstElement;
-    });
-}
 
 
 // Création d'une fonction somme des différents dès pour remplir le tableau des scores avec un switch
@@ -344,183 +374,190 @@ const sumOfElements = (keepDices, combination) => {
         break
         
         case 'full':
-        // Remplacer "array" et "value" par keepDices et keepDice
-// Exemple de tableau 
-const array = [3, 3, 3, 5, 5];
-
-const calcFull = (array) => {
-    let counts = {}; // Objet pour compter combien de fois chaque valeur apparaît
-
-    // Vérifier combien de fois chaque valeur apparaît
-    array.forEach((value) => {
-        // Vérifier si la valeur existe déjà comme une clé dans l'objet
-        if (counts[value]) {
-            // Si la valeur existe déjà, augmenter son compteur de 1
-            counts[value]++;
-        } else {
-            // Si la valeur n'existe pas encore, initialiser son compteur à 1
-            counts[value] = 1;
-        }
-    });
-
-    let hasTriple = false;
-    let hasDouble = false;
-
-    for (const value in counts) {
-        if (counts[value] === 3) {
-            hasTriple = true;
-        } else if (counts[value] === 2) {
-            hasDouble = true;
-        }
-    }
-
-    if (hasTriple && hasDouble) {
-        return 25;
-    } else {
-        return 0;
-    } 
-};
-
-const result = calcFull(array);
-console.log("Full:", result);
+            const calcFull = (keepDices) => {
+            let counts = {}; // Objet pour compter combien de fois chaque valeur apparaît
         
+            // Vérifier combien de fois chaque valeur apparaît
+            keepDices.forEach((keepDice) => {
+                // Vérifier si la valeur existe déjà comme une clé dans l'objet
+                if (counts[keepDice]) {
+                    // Si la valeur existe déjà, augmenter son compteur de 1
+                    counts[keepDice]++;
+                } else {
+                    // Si la valeur n'existe pas encore, initialiser son compteur à 1
+                    counts[keepDice] = 1;
+                }
+            });
+        
+            let hasTriple = false;
+            let hasDouble = false;
+        
+            for (const keepDice in counts) {
+                if (counts[keepDice] === 3) {
+                    hasTriple = true;
+                } else if (counts[keepDice] === 2) {
+                    hasDouble = true;
+                }
+            }
+        
+            if (hasTriple && hasDouble) {
+                return 25;
+            } else {
+                return 0;
+            } 
+        };
+        
+        const result = calcFull(keepDices);
+        console.log("Full:", result);
+        tableauScore.full = result;
+        break;
 
         case 'petiteSuite':
+            total = 0;
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) ) {
-                return
-                }
+                    console.log(30);
+                    tableauScore.petite_suite = 30;
+                }else {
+                    console.log(0);
+                    tableauScore.petite_suite = 0;
             }
-            tableauScore.petite_suite = 30;
+        };
         break;
 
         case 'grandeSuite':
             i = 0;
             for (i; i < keepDices.length; i++) {
                 if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6) ) {
-                return
+                    tableauScore.grande_suite = 35;
+                }else {
+                    tableauScore.grande_suite = 0;
                 }
             }
-            tableauScore.grande_suite = 35;
         break;
 
         case 'yams':
             total = 0;
             function calcYams(keepDices) {
                 const firstElement = keepDices[0];
-            // vérifier si les valeurs du tableau sont identiques
+        // vérifier si les valeurs du tableau sont identiques
                 const result = keepDices.every((element) => {
-            return element === firstElement;
-            });
-            // afficher le calcul du point
-            if (result) {
-                tableauScore.yams = 50
-            } else {
-                console.log(0);
+        return element === firstElement;
+                });
+        // afficher le calcul du point
+                if (result) {
+                    tableauScore.yams = 50
+                } else {
+                    tableauScore.yams = 0
+                }
             }
-            }
+        calcYams(keepDices);
         break;
-
+            
         case 'chance':
-            total = 0;
-            keepDices.forEach((nb) => {
-                total += nb;
-            });
-                tableauScore.chance = total
+            function calcChance(keepDices) {
+                keepDices.forEach((nb) => {
+                    total += nb;
+                });
+            }
+            calcChance(keepDices);
+            tableauScore.chance = total
         break;
-
+                
         default:
             console.log("operation non reconnue");
         break;
     }
-    return total
+        return total    
 }
-console.log(total);
-
+    console.log(total);
 
 // Ajouter visuellement les scores au tableau
-total1html.addEventListener("click", function(){
+total1html.addEventListener("click", function () {
     const sumOfOne = sumOfElements(keepDices, 'total1');
     total1html.innerHTML = sumOfOne;
-    setTimeout(() => {
-        if(confirm("Confirmez-vous votre choix?")) {
-            countNbOfThrow ===0;
-        }
-    }, 2000);
+        restart();
+        btnRollDices();
 })
-total2html.addEventListener("click", function(){
+total2html.addEventListener("click", function () {
     const sumOfTwo = sumOfElements(keepDices, 'total2');
     total2html.innerHTML = sumOfTwo;
-    setTimeout(() => {
-        if(confirm("Confirmez-vous votre choix?")) {
-            location.reload();
-        }
-    }, 2000);
+        restart();
+        btnRollDices();
 })
-total3html.addEventListener("click", function(){
+total3html.addEventListener("click", function () {
     const sumOfThree = sumOfElements(keepDices, 'total3');
     total3html.innerHTML = sumOfThree;
-    setTimeout(() => {
-        if(confirm("Confirmez-vous votre choix?")) {
-            location.reload();
-        }
-    }, 2000);
+        restart();
+        btnRollDices();
 })
-total4html.addEventListener("click", function(){
+total4html.addEventListener("click", function () {
     const sumOfFor = sumOfElements(keepDices, 'total4');
     total4html.innerHTML = sumOfFor;
-    setTimeout(() => {
-        if(confirm("Confirmez-vous votre choix?")) {
-            location.reload();
-        }
-    }, 2000);
+        restart();
+        btnRollDices();
 })
-total5html.addEventListener("click", function(){
+total5html.addEventListener("click", function () {
     const sumOfFive = sumOfElements(keepDices, 'total5');
     total5html.innerHTML = sumOfFive;
-    setTimeout(() => {
-        if(confirm("Confirmez-vous votre choix?")) {
-            location.reload();
-        }
-    }, 2000);
+        restart();
+        btnRollDices()
 })
-total6html.addEventListener("click", function(){
+total6html.addEventListener("click", function () {
     const sumOfSix = sumOfElements(keepDices, 'total6');
     total6html.innerHTML = sumOfSix;
-    setTimeout(() => {
-        if(confirm("Confirmez-vous votre choix?")) {
-            location.reload();
-        }
-    }, 2000);
+        restart();
+        btnRollDices();
 })
-petiteSuitehtml.addEventListener("click", function(){
+brelanhtml.addEventListener("click", function(){
+    const sumOfbrelan = sumOfElements(keepDices, 'brelan');
+    brelanhtml.innerHTML = sumOfbrelan;
+        restart();
+        btnRollDices();
+})
+carrehtml.addEventListener("click", function(){
+    const sumOfcarre = sumOfElements(keepDices, 'carre');
+    carrehtml.innerHTML = sumOfcarre;
+        restart();
+        btnRollDices();
+})
+fullhtml.addEventListener("click", function(){
+    sumOfElements(keepDices, 'full');
+    fullhtml.innerHTML = tableauScore.full;
+        restart();
+        btnRollDices();
+})
+petiteSuitehtml.addEventListener("click", function () {
     sumOfElements(keepDices, 'petiteSuite');
-    if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5)) {
-        petiteSuitehtml.innerHTML = 30;
-    }
-    setTimeout(() => {
-        if(confirm("Confirmez-vous votre choix?")) {
-            location.reload();
-        }
-    }, 2000);
+    petiteSuitehtml.innerHTML = tableauScore.petite_suite;
+        restart();
+        btnRollDices();
 })
-grandeSuitehtml.addEventListener("click", function(){
+grandeSuitehtml.addEventListener("click", function () {
     sumOfElements(keepDices, 'grandeSuite');
-    if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6)) {
-    grandeSuitehtml.innerHTML = 35;
-    }
-    setTimeout(() => {
-        if(confirm("Confirmez-vous votre choix?")) {
-            location.reload();
-        }
-    }, 2000);
+    grandeSuitehtml.innerHTML = tableauScore.grande_suite;
+        restart();
+        btnRollDices();
+})
+yamshtml.addEventListener("click", function(){
+    const sumOfyams = sumOfElements(keepDices, 'yams');
+    yamshtml.innerHTML = sumOfyams;
+        restart();
+        btnRollDices();
+})
+chancehtml.addEventListener("click", function(){
+    const sumOfchance = sumOfElements(keepDices, 'chance');
+    chancehtml.innerHTML = sumOfchance;
+        restart();
+        btnRollDices();
 })
 
 // Condition pour le bonus (si total1 + total2 + total3 + total4 + total5 + total6 >= 63) alors ajout de 35 pts bonus dans le tableau de csore
 if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauScore.total4 + tableauScore.total5 + tableauScore.total6 >= 63) { 
     tableauScore.bonus = 35;
-    }
+    bonushtml.innerHTML = tableauScore.bonus
+}
 console.log(tableauScore);
 
 // petiteSuite
@@ -538,7 +575,7 @@ console.log(tableauScore);
 
 function calcPoints(){
     // Tableau récupérant la valeur de chaque opération
-    const tableauScore = [total1, total2, total3, total4, total5, total6, bonus, brelan, carre, full, petiteSuite, grandeSuite, yams, chance];
+    const tableauScore = ["total1", "total2", "total3", "total4", "total5", "total6", "bonus", "brelan", "carre", "full", "petiteSuite", "grandeSuite", "yams", "chance"];
     let sumPoints = 0;
     // Additionner les élements tu tableau de score
     for (let point = 0; point<tableauScore.length; point++){
