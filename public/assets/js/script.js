@@ -23,10 +23,34 @@ let chancehtml = document.getElementById("chance");
 // // // // // // // // // // // // // // // // // // // //
 let dices = document.querySelectorAll(".diceButton"); // Récupération des élements Dés
 let rollDicesButton = document.getElementById("throwDice"); // Récupération du bouton "Lancer les dés"
-let messageOf2throwsLeft= document.querySelectorAll("p")[0];
-let messageOf1throwLeft= document.querySelectorAll("p")[1];
-let messageOfNothrowLeft= document.querySelectorAll("p")[2];
+let messageOf2throwsLeft = document.querySelectorAll("p")[0];
+let messageOf1throwLeft = document.querySelectorAll("p")[1];
+let messageOfNothrowLeft = document.querySelectorAll("p")[2];
 
+
+const restart = () => {
+        keepDices = [];
+
+        let dicesValues = rollDices(5);
+        for (index = 0; index < 5; index++) {
+            dices[index].innerHTML = dicesValues[index];
+            
+        }
+    
+        dices.forEach((dice) => {
+            dice.classList.remove("text-success");
+        })
+
+        rollDicesButton.disabled;
+        rollDicesButton.classList.remove("text-success");
+        messageOf1throwLeft.classList.add("d-none");
+        messageOf2throwsLeft.classList.add("d-none")
+        messageOfNothrowLeft.classList.add("d-none");
+
+        countNbOfThrow = 0;
+    
+    }
+    // )
 
 
 // Fonction Lancer de dés - Jing
@@ -45,60 +69,60 @@ let keepDicesPositions = [];
 function rollDices(numberOfTheTotalDices) {
     let dicesValues = [];
     for (let i = 0; i < numberOfTheTotalDices; i++) {
-    dicesValues[i] = Math.floor(Math.random() * 6 + 1);
+        dicesValues[i] = Math.floor(Math.random() * 6 + 1);
     }
-  // compter le nombre des fois pour les lancers des dés
+    // compter le nombre des fois pour les lancers des dés
     countNbOfThrow++;
 
-  // si 3 fois, 
-if (countNbOfThrow === numberOfTheTrials) {
-    // désactiver la bouton 
-    rollDicesButton.disabled;
-    // mettre la bouton en couleur "rouge" 
-    rollDicesButton.classList.add("text-danger");
-}
+    // si 3 fois, 
+    if (countNbOfThrow === numberOfTheTrials) {
+        // désactiver la bouton 
+        rollDicesButton.disabled;
+        // mettre la bouton en couleur "rouge" 
+        rollDicesButton.classList.add("text-danger");
+    }
 
-return dicesValues;
+    return dicesValues;
 }
 
 // Affecter visuellement aux dés les résultats du lancer
 let btnRollDices = () => {
 
-  // bloquer la fonction "rollDices" quand on a lancé 3 fois
-if (countNbOfThrow === numberOfTheTrials) {
-    return;
-}
-
-  // afficher le message pour indiquer qu'il reste encore 2 lancers
-if(countNbOfThrow ===0 ) {
-    messageOf2throwsLeft.classList.remove("d-none")
-}
-
-  // afficher le message pour indiquer qu'il reste encore 1 lancers
-if(countNbOfThrow ===1 ) {
-    messageOf2throwsLeft.classList.add("d-none")
-    messageOf1throwLeft.classList.remove("d-none")
-}
-
- // afficher le message pour indiquer qu'il ne reste plus de lancer
-if(countNbOfThrow ===2 ) {
-    messageOf1throwLeft.classList.add("d-none")
-    messageOfNothrowLeft.classList.remove("d-none")
-}
-
-  // lancer le nombre des dès selon le nombre des dès à bloquer / débloquer
-let dicesValues = rollDices(5 - countBlockedDices + countUnBlockedDices);
-console.log(`Les valeurs des dés sont : ${dicesValues}`);
-
-  // affecter aux dés les valeurs :
-for (index = 0; index < 5; index++) {
-    // si les dés ne sont pas bloqués : 
-    if (!keepDicesPositions.includes(index)) {
-      // prendre la 1ère valeur du tableau "diceValues"
-    dices[index].innerHTML = dicesValues.shift();
+    // bloquer la fonction "rollDices" quand on a lancé 3 fois
+    if (countNbOfThrow === numberOfTheTrials) {
+        return;
     }
-    // si les dés sont bloqués, laisser leurs valeurs telles qu'elles sont
-}
+
+    // afficher le message pour indiquer qu'il reste encore 2 lancers
+    if (countNbOfThrow === 0) {
+        messageOf2throwsLeft.classList.remove("d-none")
+    }
+
+    // afficher le message pour indiquer qu'il reste encore 1 lancers
+    if (countNbOfThrow === 1) {
+        messageOf2throwsLeft.classList.add("d-none")
+        messageOf1throwLeft.classList.remove("d-none")
+    }
+
+    // afficher le message pour indiquer qu'il ne reste plus de lancer
+    if (countNbOfThrow === 2) {
+        messageOf1throwLeft.classList.add("d-none")
+        messageOfNothrowLeft.classList.remove("d-none")
+    }
+
+    // lancer le nombre des dès selon le nombre des dès à bloquer / débloquer
+    let dicesValues = rollDices(5 - countBlockedDices + countUnBlockedDices);
+    console.log(`Les valeurs des dés sont : ${dicesValues}`);
+
+    // affecter aux dés les valeurs :
+    for (index = 0; index < 5; index++) {
+        // si les dés ne sont pas bloqués : 
+        if (!keepDicesPositions.includes(index)) {
+            // prendre la 1ère valeur du tableau "diceValues"
+            dices[index].innerHTML = dicesValues.shift();
+        }
+        // si les dés sont bloqués, laisser leurs valeurs telles qu'elles sont
+    }
 };
 
 // Event Listener
@@ -114,89 +138,89 @@ rollDicesButton.addEventListener("click", btnRollDices);
 
 // fonction pour recevoir les cliques
 function receiveDiceClick(clickEvent) {
-let clickedDice = clickEvent.target;
+    let clickedDice = clickEvent.target;
 
-  // s'il y a "text-success", on débloque le dè
-if (clickedDice.classList.contains("text-success")) {
-    unblockDices(clickEvent);
-} else {
-    // sinon, on bloque le dè
-    blockDices(clickEvent);
-}
+    // s'il y a "text-success", on débloque le dè
+    if (clickedDice.classList.contains("text-success")) {
+        unblockDices(clickEvent);
+    } else {
+        // sinon, on bloque le dè
+        blockDices(clickEvent);
+    }
 }
 
 // fonction pour bloquer le dè
 function blockDices(clickEvent) {
 
-  // cibler la valeur du dè bloqué
-let diceClickedValue = parseInt(clickEvent.target.innerText);
+    // cibler la valeur du dè bloqué
+    let diceClickedValue = parseInt(clickEvent.target.innerText);
 
-  // cibler l'id du dè bloqué
-let diceClickedId = clickEvent.target.id;
+    // cibler l'id du dè bloqué
+    let diceClickedId = clickEvent.target.id;
 
-  // cibler la position du dè bloqué
-let diceClickedPosition = parseInt(diceClickedId.slice(5, 6));
+    // cibler la position du dè bloqué
+    let diceClickedPosition = parseInt(diceClickedId.slice(5, 6));
 
-  // ajouter une couleur verte pour le dè bloqué
-clickEvent.target.classList.add("text-success");
+    // ajouter une couleur verte pour le dè bloqué
+    clickEvent.target.classList.add("text-success");
 
-  // conserver la valeur du dè bloqué dans le tableau "keepDices"
-console.log(`Les valeurs des dés cliqués sont : ${diceClickedValue}`);
-keepDices.push(diceClickedValue);
+    // conserver la valeur du dè bloqué dans le tableau "keepDices"
+    console.log(`Les valeurs des dés cliqués sont : ${diceClickedValue}`);
+    keepDices.push(diceClickedValue);
 
-  // conserver la position du dè bloqué dans le tableau "keepDicesPositions"
-keepDicesPositions.push(diceClickedPosition);
+    // conserver la position du dè bloqué dans le tableau "keepDicesPositions"
+    keepDicesPositions.push(diceClickedPosition);
 
-console.log(`L'index du dé cliqué est ${keepDicesPositions}`);
-console.log( `Dans le tableau "keepDices":${keepDices}`);
-  // compter le nombre des dès bloqués
-countBlockedDices++;
-sumOfElements();
+    console.log(`L'index du dé cliqué est ${keepDicesPositions}`);
+    console.log(`Dans le tableau "keepDices":${keepDices}`);
+    // compter le nombre des dès bloqués
+    countBlockedDices++;
+    sumOfElements();
 }
 
 // fonction pour débloquer le dè
 function unblockDices(clickEvent) {
 
-  // cibler la valeur du dè débloqué
-let diceUnclicked = parseInt(clickEvent.target.innerText);
+    // cibler la valeur du dè débloqué
+    let diceUnclicked = parseInt(clickEvent.target.innerText);
 
-  // cibler l'id du dè débloqué
-let diceUnclickedId = clickEvent.target.id;
+    // cibler l'id du dè débloqué
+    let diceUnclickedId = clickEvent.target.id;
 
-  // cibler la position du dè débloqué
-let diceUnclickedPosition = parseInt(diceUnclickedId.slice(5, 6));
+    // cibler la position du dè débloqué
+    let diceUnclickedPosition = parseInt(diceUnclickedId.slice(5, 6));
 
-  // supprimer la couleur verte pour le dè débloqué
-clickEvent.target.classList.remove("text-success");
+    // supprimer la couleur verte pour le dè débloqué
+    clickEvent.target.classList.remove("text-success");
 
-  // chercher l'index dans le tableau "keepDices"
-const index = keepDices.indexOf(diceUnclicked);
-console.log(`La valeur du dé débloqué est ${diceUnclicked}, son index dans keepDices est ${index}`);
+    // chercher l'index dans le tableau "keepDices"
+    const index = keepDices.indexOf(diceUnclicked);
+    console.log(`La valeur du dé débloqué est ${diceUnclicked}, son index dans keepDices est ${index}`);
 
-  // si l'index existe,
-if (index > -1) {
-    // supprimer la donnée du tableau
-    keepDices.splice(index, 1);
-    // compter le nombre des dès débloqués
-    countUnBlockedDices++;
-}
+    // si l'index existe,
+    if (index > -1) {
+        // supprimer la donnée du tableau
+        keepDices.splice(index, 1);
+        // compter le nombre des dès débloqués
+        countUnBlockedDices++;
+    }
 
-  // chercher l'index dans le tableau "keepDicesPositions"
-const indexPosition = keepDicesPositions.indexOf(diceUnclickedPosition);
+    // chercher l'index dans le tableau "keepDicesPositions"
+    const indexPosition = keepDicesPositions.indexOf(diceUnclickedPosition);
 
-  // si l'index existe,
-if(indexPosition > -1) {
-    // supprimer la donnée du tableau
-    keepDicesPositions.splice(indexPosition, 1);
-}
+    // si l'index existe,
+    if (indexPosition > -1) {
+        // supprimer la donnée du tableau
+        keepDicesPositions.splice(indexPosition, 1);
+    }
 
-console.log(`Dans le tableau "keepDicesPositions": ${keepDicesPositions}`);
-console.log(`Dans le tableau "keepDices: ${keepDices}`);
+    console.log(`Dans le tableau "keepDicesPositions": ${keepDicesPositions}`);
+    console.log(`Dans le tableau "keepDices: ${keepDices}`);
 }
 
 // Event Listener
 dices.forEach((dice) => {
-dice.addEventListener("click", receiveDiceClick);
+    dice.addEventListener("click", receiveDiceClick);
 });
 
 
@@ -245,7 +269,7 @@ const sumOfElements = (keepDices, combination) => {
                 }
             }
             tableauScore.total1 = total
-        break;
+            break;
 
         case 'total2':
             total = 0;
@@ -256,7 +280,7 @@ const sumOfElements = (keepDices, combination) => {
                 }
             }
             tableauScore.total2 = total
-        break;
+            break;
 
         case 'total3':
             total = 0;
@@ -267,8 +291,8 @@ const sumOfElements = (keepDices, combination) => {
                 }
             }
             tableauScore.total3 = total
-        break;
-    
+            break;
+
         case 'total4':
             total = 0;
             i = 0;
@@ -278,8 +302,8 @@ const sumOfElements = (keepDices, combination) => {
                 }
             }
             tableauScore.total4 = total
-        break;
-    
+            break;
+
         case 'total5':
             total = 0;
             i = 0;
@@ -289,8 +313,8 @@ const sumOfElements = (keepDices, combination) => {
                 }
             }
             tableauScore.total5 = total
-        break;
-    
+            break;
+
         case 'total6':
             total = 0;
             i = 0;
@@ -300,119 +324,103 @@ const sumOfElements = (keepDices, combination) => {
                 }
             }
             tableauScore.total6 = total;
-        break;
+            break;
 
         case 'petiteSuite':
             i = 0;
             for (i; i < keepDices.length; i++) {
-                if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) ) {
-                return
+                if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5)) {
+                    return
                 }
             }
             tableauScore.petite_suite = 30;
-        break;
+            break;
 
         case 'grandeSuite':
             i = 0;
             for (i; i < keepDices.length; i++) {
-                if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6) ) {
-                return
+                if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6)) {
+                    return
                 }
             }
             tableauScore.grande_suite = 35;
-        break;
+            break;
 
         default:
             console.log("operation non reconnue");
-        break;
+            break;
     }
     return total
 }
 console.log(total);
 
 
-    // Ajouter visuellement les scores au tableau
-    total1html.addEventListener("click", function(){
-        const sumOfOne = sumOfElements(keepDices, 'total1');
-        total1html.innerHTML = sumOfOne;
-        setTimeout(() => {
-            if(confirm("Confirmez-vous votre choix?")) {
-                location.reload();
-            }
-        }, 2000);
-    })
-    total2html.addEventListener("click", function(){
-        const sumOfTwo = sumOfElements(keepDices, 'total2');
-        total2html.innerHTML = sumOfTwo;
-        setTimeout(() => {
-            if(confirm("Confirmez-vous votre choix?")) {
-                location.reload();
-            }
-        }, 2000);
-    })
-    total3html.addEventListener("click", function(){
-        const sumOfThree = sumOfElements(keepDices, 'total3');
-        total3html.innerHTML = sumOfThree;
-        setTimeout(() => {
-            if(confirm("Confirmez-vous votre choix?")) {
-                location.reload();
-            }
-        }, 2000);
-    })
-    total4html.addEventListener("click", function(){
-        const sumOfFor = sumOfElements(keepDices, 'total4');
-        total4html.innerHTML = sumOfFor;
-        setTimeout(() => {
-            if(confirm("Confirmez-vous votre choix?")) {
-                location.reload();
-            }
-        }, 2000);
-    })
-    total5html.addEventListener("click", function(){
-        const sumOfFive = sumOfElements(keepDices, 'total5');
-        total5html.innerHTML = sumOfFive;
-        setTimeout(() => {
-            if(confirm("Confirmez-vous votre choix?")) {
-                location.reload();
-            }
-        }, 2000);
-    })
-    total6html.addEventListener("click", function(){
-        const sumOfSix = sumOfElements(keepDices, 'total6');
-        total6html.innerHTML = sumOfSix;
-        setTimeout(() => {
-            if(confirm("Confirmez-vous votre choix?")) {
-                location.reload();
-            }
-        }, 2000);
-    })
-    petiteSuitehtml.addEventListener("click", function(){
-        sumOfElements(keepDices, 'petiteSuite');
-        if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5)) {
-            petiteSuitehtml.innerHTML = 30;
-        }
-        setTimeout(() => {
-            if(confirm("Confirmez-vous votre choix?")) {
-                location.reload();
-            }
-        }, 2000);
-    })
-    grandeSuitehtml.addEventListener("click", function(){
-        sumOfElements(keepDices, 'grandeSuite');
-        if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6)) {
+// Ajouter visuellement les scores au tableau
+total1html.addEventListener("click", function () {
+    const sumOfOne = sumOfElements(keepDices, 'total1');
+    total1html.innerHTML = sumOfOne;
+    if(confirm("Etes-vous sûr de votre choix ?")) {
+        restart();
+    }
+})
+total2html.addEventListener("click", function () {
+    const sumOfTwo = sumOfElements(keepDices, 'total2');
+    total2html.innerHTML = sumOfTwo;
+    if(confirm("Etes-vous sûr de votre choix ?")) {
+        restart();
+    }
+})
+total3html.addEventListener("click", function () {
+    const sumOfThree = sumOfElements(keepDices, 'total3');
+    total3html.innerHTML = sumOfThree;
+    if(confirm("Etes-vous sûr de votre choix ?")) {
+        restart();
+    }
+})
+total4html.addEventListener("click", function () {
+    const sumOfFor = sumOfElements(keepDices, 'total4');
+    total4html.innerHTML = sumOfFor;
+    if(confirm("Etes-vous sûr de votre choix ?")) {
+        restart();
+    }
+})
+total5html.addEventListener("click", function () {
+    const sumOfFive = sumOfElements(keepDices, 'total5');
+    total5html.innerHTML = sumOfFive;
+    if(confirm("Etes-vous sûr de votre choix ?")) {
+        restart();
+    }
+})
+total6html.addEventListener("click", function () {
+    const sumOfSix = sumOfElements(keepDices, 'total6');
+    total6html.innerHTML = sumOfSix;
+    if(confirm("Etes-vous sûr de votre choix ?")) {
+        restart();
+    }
+})
+petiteSuitehtml.addEventListener("click", function () {
+    sumOfElements(keepDices, 'petiteSuite');
+    if (keepDices.includes(1) && keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5)) {
+        petiteSuitehtml.innerHTML = 30;
+    }
+    if(confirm("Etes-vous sûr de votre choix ?")) {
+        restart();
+    }
+})
+grandeSuitehtml.addEventListener("click", function () {
+    sumOfElements(keepDices, 'grandeSuite');
+    if (keepDices.includes(2) && keepDices.includes(3) && keepDices.includes(4) && keepDices.includes(5) && keepDices.includes(6)) {
         grandeSuitehtml.innerHTML = 35;
-        }
-        setTimeout(() => {
-            if(confirm("Confirmez-vous votre choix?")) {
-                location.reload();
-            }
-        }, 2000);
-    })
+    }
+    if(confirm("Etes-vous sûr de votre choix ?")) {
+        restart();
+    }
+})
 
 // Condition pour le bonus (si total1 + total2 + total3 + total4 + total5 + total6 >= 63) alors ajout de 35 pts bonus dans le tableau de csore
-if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauScore.total4 + tableauScore.total5 + tableauScore.total6 >= 63) { 
+if (tableauScore.total1 + tableauScore.total2 + tableauScore.total3 + tableauScore.total4 + tableauScore.total5 + tableauScore.total6 >= 63) {
     tableauScore.bonus = 35;
-    }
+}
 console.log(tableauScore);
 
 // petiteSuite
@@ -428,12 +436,12 @@ console.log(tableauScore);
 // // // // 4.Fonction Calcul des points // // // // // //
 // // // // // // // // // // // // // // // // // // // //
 
-function calcPoints(){
+function calcPoints() {
     // Tableau récupérant la valeur de chaque opération
     const tableauScore = [total1, total2, total3, total4, total5, total6, bonus, brelan, carre, full, petiteSuite, grandeSuite, yams, chance];
     let sumPoints = 0;
     // Additionner les élements tu tableau de score
-    for (let point = 0; point<tableauScore.length; point++){
+    for (let point = 0; point < tableauScore.length; point++) {
         sumPoints += tableauScore[point];
     }
     console.log(sumPoints)
